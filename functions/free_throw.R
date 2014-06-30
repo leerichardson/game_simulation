@@ -1,4 +1,4 @@
-free_throw <- function(free_throw_percentage, num_shots) {
+free_throw <- function(team, free_throw_percentage, num_shots) {
 #Initialize the number of points
   total_points <- 0
 #Shoot all of the fre throws that aren't the last one.  
