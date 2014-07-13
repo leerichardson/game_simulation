@@ -35,6 +35,7 @@ determine_event <- function(player, to_percentage, two_percentage, ft_percentage
     box_score["3A", player_box_score] <<- box_score["3A", player_box_score] + 1
     
     #Call the function which determines the outcome of the Three Point Attempt 
+    three_point_shot(player_box_score, team[as.numeric(player),"three_perc"])  
   }
   else {
     print("Free Throws!")
@@ -43,6 +44,8 @@ determine_event <- function(player, to_percentage, two_percentage, ft_percentage
     box_score["FTA", player_box_score] <<- box_score["FTA", player_box_score] + 2
     
     #Call the function which determines the outcome of the two free throws
-    
+    free_throw(player_box_score, team[as.numeric(player), "ft_perc"], 2)
   }
 }
+
+

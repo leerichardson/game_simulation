@@ -7,6 +7,7 @@ source("functions/free_throw.R")
 source("functions/rebound.R")
 source("functions/three_point_shot.R")
 source("functions/possession.R")
+source("functions/determine_rebounder.R")
 
 #Read in the input data which sets the parameters for the game 
 team1 <- lakers_input
@@ -27,7 +28,7 @@ colnames(box_score) <- c("team1_1", "team1_2", "team1_3", "team1_4", "team1_5",
 rownames(box_score) <- c("2M", "2A", "3M", "3A", "FTM", "FTA", "TO", "OREB", "DREB")
 
 #Determine the number of possessions
-num_pos <- 100
+num_pos <- 90
 
 #Simulate Home Team's Possessions
 for(i in 1:num_pos) {

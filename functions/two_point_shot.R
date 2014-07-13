@@ -4,9 +4,6 @@ two_point_shot <- function(player, two_percentage) {
   #Generate a random variable which will determine the outcome of the shot
   shot <- runif(1)
   
-  #Print the inputs that made it into this function
-  print(player)
-  
   #Based on the Shot variable, determine whether the input player makes or misses their two point shot!
   if (shot < two_percentage) {
     print("Made two Point Shot")
@@ -15,7 +12,9 @@ two_point_shot <- function(player, two_percentage) {
     box_score["2M", player] <<- box_score["2M", player] + 1
   }
   else {
-    
     print("Missed two Point Shot")
+    
+    #Call the rebound function to determine if the possession ends or the offense gets another play
+    rebound()  
   }
 }
