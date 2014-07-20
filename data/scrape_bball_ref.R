@@ -40,6 +40,13 @@ for (i in 2:advanced_len) {
 
 #Combine the output of these two tables, and get rid of the default rows which don't 
 all_table <- as.data.frame(subset(cbind(totals_table, advanced_table), Player != "Player"))
+all_table_revised <- all_table[,!grepl(".1", names(all_table))]
 
 #Write the polished data frame to a CSV
+write.csv(all_table_revised, file = "data/all_data.csv")
+
+
+
+
+
 
