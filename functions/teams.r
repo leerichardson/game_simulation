@@ -1,5 +1,10 @@
+#########################################################################################
+## CLEAN THE DATA SCRAPED FROM THE WEB AND SAVE IT INTO A CSV ###########################
+#########################################################################################
+
 #Load all of the Necesary Packages
 require(plyr)
+require(dplyr)
 
 #Read in the Dataset with all of the individual Player Data
 all_seasons <- read.csv("data/all_data.csv", header=TRUE)
@@ -9,27 +14,43 @@ rpm_data <- read.csv("data/RPM_data.csv", header=TRUE)
 #Merge the rpm data onto all of the Player Data
 merged_data <- merge(all_seasons, rpm_data, by = c("Player", "year"), all.x = TRUE)
 
-#Create the Minutes Per Game Variable
-merged_data$MPG <- merged_data$MP/merged_data$G
+#Remove the double Merges which happened because player sin the same year have the same name :0
+dup_test <- select(merged_data, Player, year, Tm)
+possesssion_comparison <- select(merged_data, Player, year, Tm, G, MP, Possessions, RPM)
+possesssion_comparison[(duplicated(dup_test, fromLast = FALSE) == TRUE | duplicated(dup_test, fromLast = TRUE)),]
 
-#Create individual Player Offensive distributions
-merged_data$total_pos <- merged_data$X3PA + merged_data$X2PA + .44*merged_data$FTA + merged_data$TOV
-merged_data$three_dist <- merged_data$X3PA/merged_data$total_pos
-merged_data$two_dist <- merged_data$X2PA/merged_data$total_pos
-merged_data$ft_dist <- .44*merged_data$FTA/merged_data$total_pos
-merged_data$tov_dist <- merged_data$TOV/merged_data$total_pos
-merged_data <- rename(merged_data, replace=c("X3P."= "three_perc",
-                                             "X2P."= "two_perc","FT."= "ft_perc",
-                                             "DRB."="indv_drb","ORB."= "indv_orb", "USG."="usage"))
+#Based on these results, drop the rows that merged incorrectly. Then Remove the Incorrect
+merged_data_clean <- merged_data[-c(3540, 3541, 3548, 3549, 3551, 3553, 15580, 15583),]
+
+#Create new COlumns for Minutes Per Game, and all of the necessary columns for Individual Player Distributions. 
+merged_data_clean <- mutate(merged_data_clean, 
+                            MPG = MP/G, 
+                            indv_possession = X3PA + X2PA + .44*FTA + TOV,
+                            three_dist = X3PA/indv_possession,
+                            two_dist = X2PA/indv_possession,
+                            ft_dist = (.44*FTA)/indv_possession,
+                            tov_dist = TOV/indv_possession,)
+
+ merged_data_clean <- rename(merged_data_clean, replace=c("X3P."= "three_perc",
+                                              "X2P."= "two_perc","FT."= "ft_perc",
+                                              "DRB."="indv_drb","ORB."= "indv_orb", 
+                                              "USG."="usage", "Possessions" = "team_possession"))
 
 #Grab the names of the variables to scale, and then scale them by 100
-df <- merged_data[,c("indv_orb", "indv_drb", "TRB.", "AST.", "STL.", "BLK.", "TOV.", "usage")]
+df <- merged_data_clean[,c("indv_orb", "indv_drb", "TRB.", "AST.", "STL.", "BLK.", "TOV.", "usage")]
 for(i in names(df)){
-  merged_data[[i]] <- merged_data[[i]]/100
+  merged_data_clean[[i]] <- merged_data_clean[[i]]/100
 }
 
-#Set up the Dataset where all Game's will pull from
-write.csv(merged_data, file = "data/input_data.csv")
+#Drop the unnecessary Vatiables and write the CSV to a file in the Data directory!
+dataset_revised <- select(merged_data_clean, -X.x, -X.y, -Rk)
+write.csv(dataset_revised, file = "data/input_data.csv")
+
+######################################################################################################
+## THE END! ##########################################################################################
+######################################################################################################
+
+
 
 #Create a team that represents the 2014 Lakers and 2014 Heat
 team1 <- "LAL"

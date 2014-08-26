@@ -28,8 +28,6 @@ game <- function(team_one, team_two, year_one, year_two) {
 #   totals_min <- sum(team1$MPG)
 #   team1$possession_probability <- team1$MPG/totals_min
 #   possession_five_team1 <- team1[sample(nrow(team1), size=5, prob=team1$possession_probability),]
-    
-    
 }
 
 #Testing the game
