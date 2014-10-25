@@ -1,0 +1,50 @@
+update rpm set Tm = 'ny' where Tm = 'nyk';
+update rpm set Tm = 'no' where Tm = 'nop';
+update rpm set Tm = 'no' where Tm = 'noh';
+update rpm set Tm = 'wsh' where Tm = 'was';
+update rpm set Tm = 'gs' where Tm = 'gsw';
+update rpm set Tm = 'bkn' where Tm = 'brk';
+update rpm set Tm = 'bkn' where Tm = 'njn';
+update rpm set Tm = 'phx' where Tm = 'pho';
+update rpm set Tm = 'utah' where Tm = 'uta';
+update rpm set Tm = 'sa' where Tm = 'sas';
+
+update rpm set Player = 'Roger Mason Jr.' where Player = 'Roger Mason';
+update rpm set Player = 'Roko' where Player = 'Leni Ukic';
+update rpm set Player = 'Dwayne Jones II' where Player = 'Dwayne Jones';
+update rpm set Player = 'John Lucas III' where Player = 'John Lucas';
+update rpm set Player = 'Lou Amundson' where Player = 'Louis Amundson';
+update rpm set Player = 'J.J. Barea' where Player = 'Jose Barea';
+update rpm set Player = 'Luc Richard Mbah a Moute' where Player = 'Luc Mbah a Moute';
+update rpm set Player = 'Pooh Jeter' where Player = 'Eugene Jeter';
+update rpm set Player = 'Patrick Ewing Jr.' where Player = 'Patrick Ewing';
+update rpm set Player = 'Nando de Colo' where Player = 'Nando De Colo';
+update rpm set Player = 'Patty Mills' where Player = 'Patrick Mills';
+update rpm set Player = 'Hamady Ndiaye' where Player = 'Hamady N Diaye';
+update rpm set Player = 'Ish Smith' where Player = 'Ishmael Smith';
+update rpm set Player = 'Slava Kravtsov' where Player = 'Viacheslav Kravtsov';
+update rpm set Player = 'Glen Rice Jr.' where Player = 'Glen Rice';
+update rpm set Player = 'Tim Hardaway Jr.' where Player = 'Tim Hardaway';
+update rpm set Player = 'Otto Porter Jr.' where Player = 'Otto Porter';
+update rpm set Player = 'Dennis Schroder' where Player like '%Dennis Schr%';
+
+select * from rpm where Player='Roger Mason';
+select * from rpm where Player='Leni Ukic';
+select * from rpm where Player='Dwayne Jones';
+select * from rpm where Player='John Lucas';
+select * from rpm where Player='Louis Amundson';
+select * from rpm where Player='Jose Barea';
+select * from rpm where Player='Luc Mbah a Moute';
+select * from rpm where Player='Eugene Jeter';
+select * from rpm where Player='Patrick Ewing';
+select * from rpm where Player='Nando De Colo';
+select * from rpm where Player='Patrick Mills';
+select * from rpm where Player='Hamady N Diaye';
+select * from rpm where Player='Ishmael Smith';
+select * from rpm where Player='Viacheslav Kravtsov';
+select * from rpm where Player='Glen Rice';
+select * from rpm where Player='Tim Hardaway';
+select * from rpm where Player='Otto Porter';
+select * from rpm where Player like '%Dennis Schr%';
+
+

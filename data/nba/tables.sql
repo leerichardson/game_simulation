@@ -105,7 +105,8 @@ gameDate varchar(10),
 home_team varchar(10),
 home_team_score integer,
 visit_team varchar(10),
-visit_team_score integer
+visit_team_score integer,
+game_year integer
 );
 
 
