@@ -3,9 +3,10 @@
 
 # Set to directory with SQLite database
 ############# THIS IS A LINE YOU MUST CHANGE ##########################
-setwd("C:/Users/leeri_000/basketball_stats/game_simulation/data/nba")
+setwd("C:/Users/Lee/game_simulation/data/nba")
 
 # Read in the appropriate packages. Might have to do install.packages("RSQLite") the first time 
+# install.packages("RSQLite")
 library("RSQLite")
 library("dplyr")
 
@@ -20,6 +21,7 @@ rpm <- dbGetQuery(con,'SELECT * FROM rpm')
 #Pulling a team/year
 houston_2013 <- dbGetQuery(con,'SELECT * FROM rpm WHERE year_=2013 AND Tm LIKE "hou"')
 teams <- dbGetQuery(con, 'SELECT * FROM teams')
+game_score <- dbGetQuery(con, 'SELECT * FROM gameScore')
 espn_player <- dbGetQuery(con,'SELECT * FROM players')
 
 #Merge on Player name
@@ -37,3 +39,4 @@ plot(kobe$year, kobe$RPM)
 fully_filled <- filter(player_rpm_merge, complete.cases(player_rpm_merge))
 
 # 8 Teams to fix: bkn-brk, gsw-gs, nyk-ny, phx-pho, sas-sa, uta-utah, was-wsh, nop-no
+
