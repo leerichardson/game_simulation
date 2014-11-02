@@ -1,9 +1,11 @@
 - Get the updated 2014 RPM data (pureRAPM)
 
-- Merge the game results and individual player datasets 
-
 - Teams that show up as NA (Seattle Sonics, Vancouver Grizzlies, New Jersey Nets, New Orleans Hornets, more to find)
 
 - Check game_year in dates where the date is after January 1 of the season to avoid confusion
 
-- Decide what to do when a player shows up twice in one year
+- Decide what to do when a player shows up twice in one year. Average relevant columns?
+
+- Large dataset has season totals AND season averages. 
+
+- Also could be using the wrong players for each team 

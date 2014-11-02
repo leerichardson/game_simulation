@@ -44,13 +44,6 @@ for(pmx in c(20,50,80,100,150,200,250,300,350,400)){
     cat('pmax: ',pmx,' accuracy: ',accuracy,'\n')
 }
 
-
-
-
-
-
-
-
 # LR
 # Find the best model with the best cost parameter via 10-fold cross-validations
 tryTypes=c(0:7)

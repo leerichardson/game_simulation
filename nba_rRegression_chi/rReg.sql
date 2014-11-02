@@ -3,7 +3,6 @@
 
 .output .csv
 
-
 drop table match_year;
 create table match_year as 
 select  gameDetail.match_id, 
@@ -27,7 +26,6 @@ from    match_year
 where home = 1
 group by game_year, playerId, home_team
 order by team, game_year, minutes_year desc;
- 
  
 drop table minutesTotal_visit;
 create table minutesTotal_visit as
@@ -128,10 +126,7 @@ group by
     playerName,
     SEASON
 ;
-
 --4938 records
-
-
 
 drop table gameYearPlayer;
 create table gameYearPlayer as
@@ -150,7 +145,6 @@ from    gameYearPlayer
 where   playerName IS NOT NULL;
 
 --3156 records
-
 
 select count(*) as players from gameYearPlayerNotNull
 group by team, game_year

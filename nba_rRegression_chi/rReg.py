@@ -1,4 +1,3 @@
-
 import sqlite3
 numPlayers = 10
 conn = sqlite3.connect('nba.db')
