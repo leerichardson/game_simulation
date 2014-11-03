@@ -26,8 +26,6 @@ xTest=regTable[-train,xColumns]
 yTest=regTable[-train,yLabel]
 
 
-
-
 #lasso
 s=scale(xTrain,center=TRUE,scale=TRUE)
 Fit <- cv.glmnet(s, yTrain,alpha=0.1)

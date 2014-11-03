@@ -1,0 +1,20 @@
+Question and Goals (10 points): State the updated version of the research question, based on results so far. Is it well-formed and interesting? Are there well-defined metrics for success? Is the minimum goal achievable in the remaining time? Are the stretch goals interesting?
+
+-- Predict results of basketball games with highest possible accuracy ad interpretation
+-- 
+
+
+Data set (5 points): Is the data set completely ready (in-hand, loaded onto a machine, analyzed for outliers or other problems)? Have some main features of the data set been characterized (either visually or statistically)?
+
+
+First Steps and Evaluation (10 points): Were the first steps described in the project proposal completed? Are there nontrivial preliminary results in terms of system performance or data collection (if data collection is a significant part of the project)? Is the interpretation of these results careful and correct? Is there an assessment of where the project stands? Are next steps clear, including any course corrections based on preliminary results?
+
+--- NEXT STEPS:: test more features and algorithms 
+
+Polish (5 points): Is the document well-written, well-organized, and free of typos and similar errors? Are font sizes and line widths in plots large enough? Are plots clearly labeled and figures clearly captioned?
+
+
+THINGS TO MENTION
+read nba oracle, data mining, and mit paper to get ideas on methods and features to use 
+DATA PREPARATION --- chi 
+
