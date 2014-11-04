@@ -1,18 +1,19 @@
 # Set to directory with SQLite database
 ############# THIS IS A LINE YOU MUST CHANGE ##########################
-setwd("C:/Users/Lee/game_simulation/data/nba")
+  setwd("C:/Users/Lee/game_simulation/data/nba")
 
 # Read in the appropriate packages. Might have to do install.packages("RSQLite") the first time 
 # install.packages("RSQLite")
-library("RSQLite")                                                                                                                                                                                            
-library("plyr")
-library("dplyr")
-library("doBy")
+  library("RSQLite")                                                                                                                                                                                            
+  library("plyr")
+  library("dplyr")
+  library("doBy")
 
 # connect to the sqlite file
-con <- dbConnect(drv="SQLite", dbname="nba.db")
-
-alltables <- dbListTables(con)
+  con <- dbConnect(drv="SQLite", dbname="nba.db")
+  alltables <- dbListTables(con)
+  gs <- dbGetQuery(con, 'SELECT * FROM gameScore')
+  p <- dbGetQuery(con, 'SELECT * FROM players')  
 
 #### TEST PULLING DATA FROM PREVIOUS YEAR ###########
 game_train <- dbGetQuery(con, 'SELECT gameScore.match_id, gameScore.gameDate, gameScore.game_year, 
@@ -23,15 +24,6 @@ game_train <- dbGetQuery(con, 'SELECT gameScore.match_id, gameScore.gameDate, ga
     LEFT JOIN players ON gameDetail.playerId = players.playerId
     LEFT JOIN rpm ON players.playerName=rpm.Player AND players.SEASON=rpm.year_ AND players.team = rpm.Tm
     WHERE gameDetail.match_id = 311225018 AND players.SEASON = 2011')
-
-game_train2 <- dbGetQuery(con, 'SELECT gameScore.match_id, gameScore.gameDate, gameScore.game_year, 
-    gameScore.home_team, gameScore.home_team_score, gameScore.visit_team, gameScore.visit_team_score, 
-    home, gameDetail.playerID, players.playerName, players.avg_MIN, players.avg_GP, rpm.RPM, rpm.DRPM, rpm.ORPM, 
-    rpm.PER 
-    FROM gameScore LEFT JOIN gameDetail ON gameScore.match_id = gameDetail.match_id 
-    LEFT JOIN players ON gameDetail.playerId = players.playerId
-    LEFT JOIN rpm ON players.playerName=rpm.Player AND players.SEASON=rpm.year_ AND players.team = rpm.Tm
-    WHERE gameDetail.match_id = 311227014 AND players.SEASON = 2011')
 
 #### COMBINE DUPLICATED PLAYERS ####
   game_train <- summaryBy(RPM + DRPM + ORPM + PER  + avg_MIN ~ match_id + gameDate + 
@@ -148,15 +140,7 @@ full_game_summary <- dbGetQuery(con, 'SELECT gameScore.match_id, gameScore.gameD
   
 ## CLEAN UP THE DATASET BEFORE SAVING 
   
-  
 ## PUT THE COLUMN NAMES on the FILLED DF AND SAVE AS A CSV ###
   colnames(df) = names(final_game)
   write.csv(df, "C:/Users/Lee/game_simulation/scripts/rpm_dataset")
   
-
-
-
-
-
-
-

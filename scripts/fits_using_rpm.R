@@ -1,11 +1,11 @@
 ## SET WORKING DIRCTORY ##
   setwd("C:/Users/Lee/game_simulation/scripts")
 
-## Load Libraries
+## LIBRARIES
   library("dplyr")
   library("e1071")
   
-## READ IN dataset 
+## READ IN OUR FEATURE DATASETS
   large_data <- read.csv("C:/Users/Lee/game_simulation/nba_rRegression_chi//regTable.csv")
   data <- read.csv("rpm_dataset.csv")
   
@@ -27,7 +27,6 @@
 #   ytest = test[,18]
 #   xtrain = train[,c(12,16)]
 #   ytrain = train[,18]
-  
   
 ## Naive Bayes  
   model <- naiveBayes(xtrain, ytrain)

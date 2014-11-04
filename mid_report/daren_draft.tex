@@ -1,0 +1,93 @@
+\documentclass[11pt]{article}
+\usepackage{amssymb}
+\usepackage{amsmath,mathtools}
+\newtheorem{thm}{Theorem}
+\newtheorem{defn}{Definition}
+
+\begin{document}
+\title{Pseudo Density on Functional space}
+\maketitle
+\section{First steps}
+\subsection{Building up the date frame}
+Our first steps in the project proposal was to merge three large data sets from ESPN, NBA reference and ???.
+ It is a challenge task  because for different sources
+don't match up nicely. For example, they use different names for certain players and teams. In order to overcome these problems, we 
+figured out that each player has his unique playerId and we add this to our data frame to identify players.
+We also have our own codes to match and rename the teams. \\
+One of the major difficulty is that we can not use the statistic of a game to predict that game. This is because if 
+know the game stats of each player in that game, we have already know which team is going to win.
+This simply means we are using the future stats to predict the future results. So we decide to use the stats for each player from last 
+season to predict the game result of this season.\\
+This brings up difficulty of building the big data set. We need line up the stats from last year and the game played in this year.
+Specifically, we look at, for example the game that is playing tomorrow. We figure out the players for home team and visiting team. 
+(This is not cheating because before every game is play, NBA official website will offer a preview of the game. The preview will 
+have a list of player on each team. Any player not on the list are not allowed to play for both teams in that game.)
+Then we find their stats from last year. We sum their stats up if they are in the same team. Thus we get the home team features and the visiting team
+features. In this way we build up our big data frame. \\
+To wrap up, 
+We try very hard to come up with one clean and useful data frame. This data frame is powerful because it is takes care of the issue that causes missing data, injury of a player.
+If the player can not play for tomorrow's game and we want to predict the game result, we simply make up our team stats without him.
+( I need to know more details from Chi about what is nontrivial in terms of getting the code.)
+
+\subsection{Preliminary results on predictions}
+Our main goal is to predict the result of the games played in the future. We need to build up a model to accomplish that.  
+(At this stage we only have a few simple methods, we will try more complicated methods and will discuss what we are going to try at our
+future work section.)\\
+\begin{itemize}
+\item
+To train the model, we use 2009-2010 season stats as our X-train and 2010-2011 season game results as our y-train.
+(Here it will be help full to come up with a table or so) 
+We used naive Bayes classifier (Lee fill this part up), linear and logistic regression to fit the model
+\item For the testing part in this case we use 2010-2011 season stats as X-test and make prediction on game result during season 2011-2012 using our model just built.
+For linear and logistic model, we find the fitted value $\hat y$. For prediction we use the following simple rule
+$$ \text{Predict}(\hat y) :=\begin{dcases} 1 \ \ \ \text{(home team win) if  \  $\hat y \ge 0.5$} \\
+     0 \ \ \ \text{(home team loss) if  \ $\hat y < 0.5$}
+      \end{dcases}
+$$
+\item To evaluate the prediction result, we compare this prediction vector to the real  game result of season 2011-2012. We count the number of games we predict correctly. 
+We divide the counts by the total number of games player in the season to get the accuracy . So far the accuracy we can get is around $68\%$. \\
+To get a better idea about our accuracy, we first mention that the chance for a  home team winning the game is around $60\%$ for every season. We definitely beating that.\\  
+We also compare ourself to the existing prediction.
+
+\begin{table}[ht]
+\caption{Prediction accuracy comparison} % title of Table
+\centering % used for centering table
+\begin{tabular}{c c c c c} % centered columns 
+\hline\hline %inserts double horizontal lines
+Source & Webs \ \ & NBA oracle & MIT thesis & Ours  \\ [0.5ex] % inserts table 
+%heading
+\hline % inserts single horizontal line
+Accuarcy on average& $65\%$ & $70\%$ &$70\%$&  $68\%$ \\
+ [1ex] % [1ex] adds vertical space
+\hline %inserts single line
+\end{tabular}
+\label{table:nonlin} % is used to refer this table in the text
+\end{table}
+
+We want to remark that our model is still very simple and naive. We have a lot of room to improve. 
+One reason we are confident about our work is that we are using RPM(Lee why you like RPM explain!!!) 
+\end{itemize}
+
+
+
+\subsection{Future work}
+In the following month, we will be mainly focusing on using the data frame we made and come up with different model and test them. 
+As we learn from reading several reference, see [1] and [2] (Give a reference link at the end??) we always see a very interesting but importance phenomena:
+very complicated models in general does not perform any better than simple ones. Some of the complicated one will even results in over fitting . \\
+As a result we will be focusing on four different simple models: Linear regression, Logistic, Naive Bays and Perceptron.  We will use all the basis stats
+of a basketball game such as assists and rebounds, but we also will be using the RPM bla bla (LEE again explain why.)
+We will apply feature selection to improve our prediction performance. The feature selection methods we are going to apply are 
+Larso, AIC,  (what else...)
+\\
+Finally we once we have several simple model we will use ADA boosting to see whether we can get a better prediction with all those model combined.
+Every model we have is doing much better than random but we believe that  they capture different aspect of the game  ( plzzzzzzzz help me make it sound). Using ada boost to combine them , we should be able to 
+get a better model. 
+
+
+
+%how to make prediction 0, 1 <0.5
+
+%how to evaluate, predict home win give us 0.6
+%best is 70% on averge.
+
+\end{document}
