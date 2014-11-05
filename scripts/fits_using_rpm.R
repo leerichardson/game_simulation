@@ -22,7 +22,7 @@
   xtrain = train[,9:17]
   ytrain = train[,18]
   
-#### Different features   
+#### Trying Different features ######
 #   xtest = test[,c(12,16)]
 #   ytest = test[,18]
 #   xtrain = train[,c(12,16)]
@@ -36,4 +36,7 @@
   compare$result <- abs(compare[,2] - compare[,1])
   error <- sum(compare$result/length(ytest))
   1 - error
+  
+## Logistic Regression  
+  
   

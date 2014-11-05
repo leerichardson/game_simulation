@@ -7,91 +7,104 @@
 \newcommand*{\QEDA}{\hfill\ensuremath{\blacksquare}}
 \usepackage{sectsty}
 \usepackage{indentfirst}
-\usepackage[margin=1in]{geometry}
-\allsectionsfont{\centering}
+\usepackage[margin=1.5in]{geometry}
 
 \title{Project Midway Report}
-\author{Lee Richardson\\
-	Daren Wang \\
-	Chi Zhang \\
-	Xiaofeng Yu \\}  
+\author{Lee Richardson (lrichard), Daren Wang (darenw) \\ Chi Zhang (chiz2), Xiaofeng Yu (xiaofen1)\\}  
 
 \begin{document}
 \maketitle
 
-\section*{Question}
+\section{Question}
 	%% State goal and relavant metric
-	Our goal for this project is to predict the outcomes of NBA basketball games as accurately as possible. To do this, we have collected data from various sources in to find the best features to use for prediction. Our metric for success we have been using is a 0-1 loss function. We will predict each game in a season, and then check the actual results to see how many games we accurately predicted.
+	Our goal for this project is to predict the outcomes of NBA basketball games as accurately as possible. To do this, we have collected data from various sources in order to find the best predictive features. The metric for success we're using is a 0-1 loss function. We will predict each game for an entire season, and then check the outcomes to see the percentage of games we predicted correctly. 
 
-\section*{Dataset}
+\section{Dataset}
 	
 	%%%% DESCRIBE THE DATASET
-	We did not have a processed dataset for this project, so we created our own database. This means we had to select data sources and use ETL steps to merge them together. \\
+	\subsection{Data Sources}
+	We did not have a processed dataset for this project, so we created our own database. The three main sources we used were ESPN's NBA website \cite{espn}, basketball reference \cite{bball_ref}, and a new website from Jeremias Engleman \cite{rpm_data}. We used the ESPN data to get information about all NBA games from 2009-2014. Specifically, this includes the game score, the home and away teams, the players involved and their statistics. Also from ESPN, we have a player database, which has 50 individual statistics for each player in each season. There are 7139 games in this dataset. \\
 
-	\par The three main data sources we used were the ESPN NBA website \cite{espn}, Basketball Reference \cite{bball_ref}, and a new website from Jeremias Engleman \cite{rpm_data}. We use the ESPN data to get information about all NBA games from 2009-2014. Specifically, this includes the game score, the home and away teams, the players involved and their statistics. Also from ESPN, we have a player database, which has 50 individual statistics for each player in each of the seasons. There are 7139 games in this dataset. \\
+	The next data source we used was basketball reference \cite{bball_ref}. The main reason we used this site is because they have a larger individual player database, with information dating back to the 1950's and more advanced statistics, such as the widely used Player Efficiency Rating (PER), compared with the box score stats provided by ESPN. \\
 
-	The next data source we used was basketball reference \cite{bball_ref}. The key reason we used this site is because they have a larger player database, with player information dating back to the 1950's and more advanced statistics, such as the widely used Player Efficiency Rating (PER), as oppposed to just the box score stats provided by ESPN. \\
-
-	The final data source we used was from a website put together by Jeremias Engleman \cite{rpm_data}. which has the Regularized Adjusted Plus Minus (RAPM) statistics dating back to the 1980's. This statistic is widely used in the nba statistics community, and it has the best estimates of individual effects on defense than anything else. As we see below, RAPM is a very useful feature in predicting game outcomes. \\
+	The final source we used was from a website put together by Jeremias Engleman \cite{rpm_data}. This site has Regularized Adjusted Plus Minus (RAPM) statistics dating back to the 1980's. This statistic has been widely adopted in the nba statistics community, and it's one of the few trustworthy stats which provides an individual assessment of defense. As we see below, RAPM is a very useful feature in predicting game outcomes. \\
 
 	%%% WEB CRAWLERS
+	\subsection{Web Crawlers}
 	To obtain all of these datasets, we used webcrawlers to pull them off their websites. All of these scripts can be found in our Github repository \cite{gitrepo}. For the ESPN data, we used the BeautifulSoup package in the Python language. For the other two datasets, we used the XML package in R. \\
 
 	%%% TALK ABOUT MERGING SOURCES 
-	One of the major issues in our profect has been combining these three data sources into one single database. The ESPN dataset had a match\_id, and playerID's for each game, so merging the game statistics with the players database wasn't very difficult. However, the basketball reference and RAPM datset didn't have these identifiers, so it was more challenging to put them together. We ended up using Player name, team, and team the join both of these datasets together. Some common probelms we have were inconsistent spelling of names in different datsets, inconsistent team names, some teams were changing cities, etc.. In the end, we were able to sync the idiosyncracies between the datasets, and we think it will be worth it going forward to have all of the extra features to experiment with. However, we don't doubt that there will still be further cleaning to do (I.E: Linking the Oklahoma City Thunder and the Seattle Sonics together, since they are technically the same Franchise.)\\
+	\subsection{Merging Sources into One Database}
+	One of the major obstacles in our project has been combining these three data sources into one single database. The ESPN dataset had both match and playerID's for each game, so merging the game statistics with the ESPN player database wasn't very difficult. However, the basketball reference and RAPM datset didn't have these identifiers, so it was more challenging to put them together. We ended up using the player's name, team, and season the join both of these datasets together with ESPN. Some common probelms we have were inconsistent spelling of names in different datsets, inconsistent team names, teams have changed cities, etc.. In the end, we were able to sync most of the idiosyncracies between the three datasets, which is important because we will have more interesting features than just box score statistics. That being said, we don't doubt that there will still be further cleaning to do, and we will deal with these situations as they arise. \\
 
 	%%% TALK ABOUT SQLITE LOADING DATA INTO DATABASE
-	We are using an SQLite database to store all of the tidied data. The design of this database follows the Third normal form to ensure there's no redundancy,  and the indexes were built on frequently used keys to ensure the queries are fast. 
+	We are using an SQLite database to store all of the tidied data. The design of this database follows the third normal form to ensure there's no redundancy, and the indexes were built on frequently used keys to ensure the queries are fast. 
 
-\section*{Literature Review}
+\section{Literature Review}
 	%%% TALK ABOUT NBA ORACLE AND DATA MINING TO COMPARE PREDICTION ACCURACIES
-	We looked into the literature to see if anyone had worked on the same problem. We found a couple papers, especially \cite{nba_oracle} and \cite{data_mining}, which were similarly attempting to predict the results of games. These papers used Linear and Logistic regression, Naive Bayes, SUpport Vector Machines, and Neural Networks in order to predict the outcomes of games. They also used the same loss function that we are proposing, which gives us a prediction rate to shoot for when implementing our algorithms. Specifically, \cite{nba_oracle} acieved the highest classification rate of 73\% in the 1996 season with linear regression, and all of the other seasons and techniques had error rates in the mid-high 60's or low 70's. \\
+	We looked into the literature to see if anyone had worked on the same or similar problems. We found a couple papers, \cite{nba_oracle} and \cite{data_mining}, which also attempted to predict the results of NBA games. These papers used linear regression, logistic regression, naive bayes, and SVM's to predict the outcome of single games. They also used the same loss function that we are proposing, which gives us a prediction rate to shoot for when implementing our algorithms. Specifically, \cite{nba_oracle} achieved the highest single season classification rate of 73\% in the 1996 season using linear regression. All of the other seasons/algorithm combinations had error rates from the mid-high 60's to low 70's. \\
 
 	%%% DELVE INTO THE RPM PAPER TO EXPLAIN WHY IT'S SO GOOD
-	One advantage we believe we have as opposed to the other groups who have attempted these prediction problems is that we have more features, specifically we have RAPM. RAPM has been anointed by many as the next big thing \cite{bigrpm} in basketball statistics, and we hope that this as a feature can help differentiate us between the other attempts at game classification. There is a full explanation of the statistic here \cite{rpm}, but the basic idea is to split each game into miniature games, each one occuring time time periods when there's no substitutions. Then these five players play a certain amount of possessions on offense and defense, and we can estimate their overall effect on both ends of the floor. 
+	One advantage we believe we have compared with these groups is that we have a more robust feature set, most notably we have RAPM. RAPM has been anointed by many as the next big thing \cite{bigrpm} in basketball statistics, and we hope that using it as a feature can help differentiate our attempts at game classification. There is a full explanation of the statistic here \cite{rpm}, but the basic idea is to split each game into miniature games, each one occuring in time periods when there's no substitutions. Then these ten players play a certain amount of possessions on offense and defense, and we can estimate their overall effect on both ends of the floor. RAPM adjusts flaws in original plus minus, by coerrecting for the fact that each player's totals are heavily influenced by the play of his on court teammates, and pooling information from previous seasons to reduce the error margin. 
 
-\section*{Current Status}
+\section{Current Status}
 	%%% TWOFEATURE MATRICES/.. LARGE AND JUST RPM/PER
-	We have put a substantial amount of time into constructing our feature matrices. So far we have two, one which is using Defensive and Offensive RAPM, and the other using all of ESPN's box score statistics. To create these datsets, we went through each match to find the players on each team, and merged the players statistics from the previous season with the match results in the current season. To form the RAPM matrix, we used each players average minutes played from the season before, and used these as weights to compute a weighted offensive and defensive RPM statistic for each team. Below is a look at the final matrix we use for fitting our models
+	\subsection{Training and test datasets}
+	We have put a substantial amount of time into constructing our training and test datasets. So far we have created two, one which is using defensive and offensive RAPM, and the other uses all of ESPN's player statistics. To create these datsets, we went through each match to find the players on each team, and merged these players statistics from the previous season with the match results in the current season. To form the RAPM matrix, we used each players average minutes pergame from the season before as weights to compute weighted offensive and defensive RAPM statistic for each team. Say there's n players on each team, each playing m minutes per game with and RAPM score r in the previous season. Then the formula for the players weights and team offensive RAPM is (the computation is the same for defensive RAPM):
+
+	\begin{align*}
+		w_i &= \frac{m_i}{\frac{1}{n}\sum_{i=1}^{n} m_i} \\
+		\text{Team Offensive RAPM} &= \frac{1}{n}\sum_{i=1}^{n} w_i \times r_i 
+	\end{align*}
 
 	%%% TABLE OF EXAMPLE MATRIX %%%
 	\begin{table}[ht]
 	\centering
 	\begin{tabular}{rrrrrr}
 	  \hline
-	 & ORPM\_weight.0 & DRPM\_weight.0 & ORPM\_weight.1 & DRPM\_weight.1 & homeWin \\ 
+		ORPM\_home & DRPM\_home & ORPM\_away & DRPM\_away & homeWin \\ 
 	  \hline
-	1 & -0.28 & 0.89 & 0.65 & 0.18 & 1.00 \\ 
-	  2 & -0.28 & 0.89 & 1.15 & 1.05 & 1.00 \\ 
-	  3 & -0.29 & 0.99 & -1.44 & 0.12 & 1.00 \\ 
-	  4 & 0.03 & -0.66 & 0.04 & 1.09 & 1.00 \\ 
-	  5 & 0.28 & 1.26 & -0.81 & -0.20 & 0.00 \\ 
-	  6 & -0.75 & -0.46 & 0.51 & 1.02 & 1.00 \\ 
+		-0.28 & 0.89 & 0.65 & 0.18 & 1 \\ 
+	  	-0.28 & 0.89 & 1.15 & 1.05 & 1 \\ 
+	  	-0.29 & 0.99 & -1.44 & 0.12 & 1 \\ 
+	  	0.03 & -0.66 & 0.04 & 1.09 & 1 \\ 
+	  	0.28 & 1.26 & -0.81 & -0.20 & 0 \\ 
+	  	-0.75 & -0.46 & 0.51 & 1.02 & 1 \\ 
 	   \hline
 	\end{tabular}
+	\caption{A look at what our training and test datasets look like. The first four columns are features and the 5th column is our labels}
+	\label{table:matrix}
 	\end{table}
 
+	Table \ref{table:matrix} shows a look at our final tidied dataset. 
+
 	%%% BOTH GIVE 67% ACURACY
-	After constructing these two matrices, we were able to run classification algorithms on them to test their prediction accuracy. Given the amount of effort that went into creating the matrices, we didn't have a lot of time to experiment with different algorithms and featues. However, we were able to fit a Naive Bayes classifier, trained on the 2009 season and tested on the 2010 season, which gave us 67\% accuracy. We see this as a good sign for achieving a rate equal if not higher than the NBA oracle algorithms. 
+	\subsection{Classification}
+	After constructing these two matrices, we were able to run classification algorithms on them to test their prediction accuracy. Given the amount of time effort that went into creating the datasets, we didn't have a lot of time to experiment with different algorithms and features. However, we were able to fit a Naive Bayes classifier, trained on the 2009 season and tested on the 2010 season, which gave us 67\% accuracy. We think this is a good sign, and with more work on the specific algorithms and features we think we can achieve rates similar if not higher than those achieved before us.
 
-	%% NEED TO ADD SOME FIGUES HERE !!!!!!!
+	\subsection{RPI}
 
-\section*{Realistic Goal}
+	%% FIGURE OF HOME TEAM WINS OVER THE YEARS
+
+\section{Realistic Goals}
 	%% Play with different algorithms/feature datasets
-	As mentioned above, a substantial amount of time was put into collecting and tidying the data, and creating the feature matrices. Now that lots of this work completed, we will have more time to experiment with different classification algorithms and combinations of features, to see if we can find combinations that improve our classification accuracy. Specifically, we hope to use linear, logistic, and SVM techniques to classify our data and see how well they perform. 
+	As mentioned above, a substantial amount of time was put into collecting and tidying the data, and creating testable datasets. Now that this has been completed, we have more time to focus on different classification algorithms and combinations of features, to see if we can improve our accuracy. Specifically, we hope to implement:
+
+	\begin{itemize}
+		\item Linear Regression
+		\item Logistic Regression
+		\item Support Vector Machine
+	\end{itemize}
 
 	%% ACHIEVE > 70 % TEST ERROR FOR ONE ON OUR SEASONS
-	We believe it is a realistic goal to achieve a greater 70\% classification rate on one of our seasons before the end of th course. 
+	We believe it is a realistic goal to achieve a greater 70\% classification rate on one of our seasons before the end of the course. 
 
-\section*{Stretch Goals}
+\section{Stretch Goals}
 	%%% not just past year, past 3 years or projections 
-	One of the parts of our classification we feel could be improved is that we are only usin the previous seasons data to predict the current season. This runs into issues. For instance, some rookies, even if thye are quite productive players, don't have statistics from last season so we have to assign them league average rates. Also, some players, such as Derick Rose, were injured in the previous season, so using just last year and discounting his MVP season would downgrade the Chicago Bulls team substantially. To combat these issues, we think it may be helpful to use more than just last seasons statistics, perhaps the last threee years, or test on projected statistics for 2014. The latter could probably spawn an entirely new project. \\
+	One part of our classification that could be improved is that we are only using the previous seasons data to predict the current season. There are some obvious issues with this strategy. For instance, some rookies, even if they're very productive players, don't have statistics from last season, so we are just assigning them league average rates. Also, some players, for example former MVP Derrick Rose, was injured for two entire seasons, so using just the last year to predict a game and discounting his MVP season would misrepresent how good the Chicago Bulls are. To combat these issues, we think it may be helpful to use more than just last season data, perhaps using the average of the last three years, or set up a projection system. The first seems like a more tractable goal than actually maing projections, which could probably spawn an entirely new project. \\
 		
 	%%% simulating the whole season, using game probabilities and picking U(0,1) multiple runs through the season to ge distributions of wins. 
-	Another thing we could try to to is predict the outcome of the numer of wins in a season, as opposed to just single game results. To do this, consider fitting a Naive Bayes model. The outcome is two probabilities of each team winning th game. We could compress these probabilities to sum up to one, and then use a Uniform $\sim$ (0,1) random variable to choose the winner for each game. We could do this for each game in the season and add up the wins and losses for each team. Then we could repeat this process a couple thousand times to see a distribution of total wins for each team. 
-	
-	%% RANKINGS?
-	
+	Another thing we've thought about trying is predicting the number of wins in a season, as opposed to just a single game results. To accomlish this, consider fitting a Naive Bayes model. The outcome is two probabilities of each team winning the game, and for classification we just take the maximum. We could compress these probabilities to sum up to one, and then use a $\sim$ Uniform(0,1) random variable to decide the winner of each game. We could do this for each game in the season and add up the wins and losses for each team. Then we could repeat this process a couple thousand times to generate a distribution of total wins for each team. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%% BIBLIOGRAPHY %%%%%%%%%%%%
