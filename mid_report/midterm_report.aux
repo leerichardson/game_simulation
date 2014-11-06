@@ -1,28 +1,37 @@
 \relax 
-\citation{espn}
-\citation{bball_ref}
-\citation{rpm_data}
-\citation{bball_ref}
-\citation{rpm_data}
-\citation{gitrepo}
-\@writefile{toc}{\contentsline {section}{\numberline {1}Question}{1}}
-\@writefile{toc}{\contentsline {section}{\numberline {2}Dataset}{1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Data Sources}{1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Web Crawlers}{1}}
 \citation{nba_oracle}
 \citation{data_mining}
 \citation{nba_oracle}
 \citation{bigrpm}
 \citation{rpm}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Merging Sources into One Database}{2}}
-\@writefile{toc}{\contentsline {section}{\numberline {3}Literature Review}{2}}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Current Status}{2}}
+\citation{espn}
+\citation{bball_ref}
+\citation{rpm_data}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Works}{1}}
+\citation{bball_ref}
+\citation{rpm_data}
+\citation{gitrepo}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Dataset}{2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Data Sources}{2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Web Crawlers}{2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Merging Sources into One Database}{2}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{2}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Training and test datasets}{2}}
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces A look at what our training and test datasets look like. The first four columns are features and the 5th column is our labels}}{3}}
-\newlabel{table:matrix}{{1}{3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Classification}{3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}RPI}{3}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Realistic Goals}{3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Our database schema after merging the ESPN, Basketball Reference, and RAPM datasets together}}{3}}
+\newlabel{fig:database}{{1}{3}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces A look at what our training and test datasets look like. The first four columns are features and the 5th column (indicating whether or not the home team won the game) is our label}}{4}}
+\newlabel{table:matrix}{{1}{4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Classification}{4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces On the left is a plot showing the correlation between two features in our dataset. This shows that our data is not linearly seperable for these two features, which is common among this dataset. However, we do see that there is some signal between wins and losses for these two features, as a higher score indicated a higher chance of winning the game. On the right, we look at team RAPM in wins compared with losses. As we can see, RAPM is clearly higher in wins than losses, so their is clear signals coming from this feature, as expected. }}{4}}
+\newlabel{feats}{{2}{4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}RPI}{5}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Future Work and Goals}{5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Realistic Goals}{5}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Box Plot using 2011 to train the ranking and testing on 2012}}{6}}
+\newlabel{f1}{{3}{6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Missing data and Outliers}{6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Stretch Goals}{6}}
 \bibcite{nba_oracle}{1}
 \bibcite{data_mining}{2}
 \bibcite{rpm}{3}
@@ -31,4 +40,3 @@
 \bibcite{bball_ref}{6}
 \bibcite{espn}{7}
 \bibcite{gitrepo}{8}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Stretch Goals}{4}}
