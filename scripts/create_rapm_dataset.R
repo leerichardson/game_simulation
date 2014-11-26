@@ -1,6 +1,6 @@
 # Set to directory with SQLite database
 ############# THIS IS A LINE YOU MUST CHANGE ##########################
-  setwd("C:/Users/Lee/game_simulation/data/nba")
+  setwd("C:/Users/Lee/game_simulation")
 
 # Read in the appropriate packages. Might have to do install.packages("RSQLite") the first time 
 # install.packages("RSQLite")
@@ -8,14 +8,19 @@
   library("plyr")
   library("dplyr")
   library("doBy")
-
+  
 # connect to the sqlite file
-  con <- dbConnect(drv="SQLite", dbname="nba.db")
+  con <- dbConnect(drv="SQLite", dbname="nba_rRegression_chi/nba.db")
   alltables <- dbListTables(con)
+
+# Read in the game score and player tables 
   gs <- dbGetQuery(con, 'SELECT * FROM gameScore')
   p <- dbGetQuery(con, 'SELECT * FROM players')  
 
-#### TEST PULLING DATA FROM PREVIOUS YEAR ###########
+###############################################################################################
+################### SHOWS HOW WE ARE GETTING DATA FROM ONE PARTICULAR GAME ####################
+###############################################################################################
+
 game_train <- dbGetQuery(con, 'SELECT gameScore.match_id, gameScore.gameDate, gameScore.game_year, 
     gameScore.home_team, gameScore.home_team_score, gameScore.visit_team, gameScore.visit_team_score, 
     home, gameDetail.playerID, players.playerName, players.avg_MIN, players.avg_GP, rpm.RPM, rpm.DRPM, rpm.ORPM, 
@@ -54,10 +59,14 @@ game_train <- dbGetQuery(con, 'SELECT gameScore.match_id, gameScore.gameDate, ga
   final_game <- reshape(weight_inputs, timevar="home", idvar=c("match_id", "gameDate",  
                                                  "game_year", "home_team", "home_team_score", "visit_team",
                                                  "visit_team_score"), direction="wide")
+#################################################################################################
 
 
+###################################################################
 ##### LOOP THROUGH EACH MATCH ID AND ADD IN THE COVARIATE DATA ####
-######### GET ALL THE MATCH, YEAR, AND PLAYER ID's ##############
+###################################################################
+
+######### GET ALL THE MATCH, YEAR, AND PLAYER ID's ################
 full_game_summary <- dbGetQuery(con, 'SELECT gameScore.match_id, gameScore.gameDate, gameScore.game_year, 
   gameScore.home_team, gameScore.home_team_score, gameScore.visit_team, gameScore.visit_team_score, 
   home, gameDetail.playerID, players.playerName FROM gameScore LEFT JOIN gameDetail 
@@ -66,21 +75,24 @@ full_game_summary <- dbGetQuery(con, 'SELECT gameScore.match_id, gameScore.gameD
   WHERE gameScore.game_year = players.SEASON 
   AND gameDetail.netPoints is not null')
 
-### LOOP THROUGH EACH MATCH ID
+### GET THE MATCH IDS #########
+### SETTING UP A TEST QUERY ###
     match_ids <- unique(full_game_summary$match_id)
-    gameDetail.match_id = 311225018 AND players.SEASON = 2011
     unique(filter(full_game_summary, match_id == 311225018)$game_year)
   
     mid <- 311225018
     year <- 2011
 
     dbGetQuery(con, sprintf("SELECT gameScore.match_id, gameScore.gameDate, gameScore.game_year, 
-    gameScore.home_team, gameScore.home_team_score, gameScore.visit_team, gameScore.visit_team_score, 
-    home, gameDetail.playerID, players.playerName, players.avg_MIN, players.avg_GP, rpm.RPM, rpm.DRPM, rpm.ORPM, 
+    gameScore.home_team, gameScore.home_team_score, gameScore.visit_team, 
+    gameScore.visit_team_score, 
+    home, gameDetail.playerID, players.playerName, players.avg_MIN, players.avg_GP, 
+    rpm.RPM, rpm.DRPM, rpm.ORPM, 
     rpm.PER 
     FROM gameScore LEFT JOIN gameDetail ON gameScore.match_id = gameDetail.match_id 
     LEFT JOIN players ON gameDetail.playerId = players.playerId
-    LEFT JOIN rpm ON players.playerName=rpm.Player AND players.SEASON=rpm.year_ AND players.team = rpm.Tm
+    LEFT JOIN rpm ON players.playerName=rpm.Player AND players.SEASON=rpm.year_ AND 
+    players.team = rpm.Tm
     WHERE gameDetail.match_id = %s AND players.SEASON = %s", mid, year))
 
 
@@ -113,6 +125,9 @@ full_game_summary <- dbGetQuery(con, 'SELECT gameScore.match_id, gameScore.gameD
    
      ### ASSIGN NULL VALUES TO 0 FOR RPM ####
      game_train[is.na(game_train)] <- 0
+    
+     ## SET 0 PER's TO 15's 
+     
      
      ### CONSTRUCT A WEIGHTED AVERAGE OF OFFENSIVE AND DEFENSIVE RPM FOR BOTH TEAMS ###
      total_mins <- ddply(game_train, .(home), summarise, total_mins = sum(avg_MIN.mean))
@@ -137,10 +152,8 @@ full_game_summary <- dbGetQuery(con, 'SELECT gameScore.match_id, gameScore.gameD
     ### PUT THE FINAL GAME STATISTICS INTO THE LARGE MATRIX
     df[count,] = final_game
   }
-  
-## CLEAN UP THE DATASET BEFORE SAVING 
-  
+
 ## PUT THE COLUMN NAMES on the FILLED DF AND SAVE AS A CSV ###
   colnames(df) = names(final_game)
-  write.csv(df, "C:/Users/Lee/game_simulation/scripts/rpm_dataset")
+  write.csv(df, "C:/Users/Lee/game_simulation/scripts/rpm_dataset.csv")
   

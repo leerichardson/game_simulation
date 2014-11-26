@@ -1,3 +1,5 @@
+-------- GENERAL ---------------------
+
 - Get the updated 2014 RPM data (pureRAPM)
 
 - Teams that show up as NA (Seattle Sonics, Vancouver Grizzlies, New Jersey Nets, New Orleans Hornets, more to find)
@@ -9,3 +11,22 @@
 - Large dataset has season totals AND season averages. 
 
 - Also could be using the wrong players for each team 
+
+- Mention how good home does as a feature, show that we need to improve on the 60 % baseline
+
+- Could test best (tell all) metrics on their predictive accuracy. 
+
+
+------- MIDTERM REVIEW NOTES ----------------
+
+RAPM - Individual (scalar) player statistic.
+
+Putting the dataset online. Github? Other suggestions on how to do this? Need to make sure it's totally accurate
+
+RPI section- Talk about how we need to use it to give some signals about how good the team was last year (Which we don't have in our current dataset). Maybe we don't need tiers, and can use the pure metrix as a feature. 
+
+
+----- FUTURE GOALS -------------
+- Scrape play by play data and calculate our own RAPM statistic
+- Mention "All in One" Statistic predictive accuracy 
+- Mention home team wins 60 % of games, maybe get a table of JUST home teams 
