@@ -12,7 +12,8 @@
 
 - Also could be using the wrong players for each team 
 
-- Mention how good home does as a feature, show that we need to improve on the 60 % baseline
+- Mention how good home does as a feature, show that we need to improve on the 60 % baseline 
+	(Could be a good plot for the poster)
 
 - Could test best (tell all) metrics on their predictive accuracy. 
 
@@ -30,3 +31,4 @@ RPI section- Talk about how we need to use it to give some signals about how goo
 - Scrape play by play data and calculate our own RAPM statistic
 - Mention "All in One" Statistic predictive accuracy 
 - Mention home team wins 60 % of games, maybe get a table of JUST home teams 
+- How to simulate games without knowing the players who played beforehand ???

@@ -14,8 +14,9 @@
   data$homeWin <- ifelse(data$home_team_score > data$visit_team_score, 1, 0)
   
 ## Set up datasets ##   
-  train = filter(data, game_year == 2012)
-  test = filter(data, game_year == 2013)
+  years <- c(2008, 2009, 2010, 2011, 2012, 2013)
+  train = filter(data, game_year %in% c(2008))
+  test = filter(data, game_year == 2009)
   
   xtest = test[,9:17]
   ytest = test[,18]
@@ -26,10 +27,10 @@
   model <- naiveBayes(xtrain, ytrain)
   preds <- as.data.frame(predict(model, xtest, type = c("raw"), threshold = 0.001))
   preds$class <- ifelse(preds[,2] > preds[,1], 1, 0)
-  compare <- as.data.frame(cbind(preds[,3], ytest))
-  compare$result <- abs(compare[,2] - compare[,1])
-  error <- sum(compare$result/length(ytest))
-  1 - error
+  preds <- cbind(preds, ytest)
+  preds$result <- abs(preds[,3] - preds[,4])
+  accuracy <- 1 - sum(preds$result)/length(ytest)
+  accuracy
   
 ## Logistic Regression  
   
@@ -38,5 +39,7 @@
 ## Support Vector Machine
   
 ## Non parametric regression 
+  
+  
   
   
