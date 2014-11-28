@@ -15,8 +15,8 @@
   
 ## Set up datasets ##   
   years <- c(2008, 2009, 2010, 2011, 2012, 2013)
-  train = filter(data, game_year %in% c(2008))
-  test = filter(data, game_year == 2009)
+  train = filter(data, game_year %in% c(2008, 2009, 2010, 2011, 2012))
+  test = filter(data, game_year == 2013)
   
   xtest = test[,9:17]
   ytest = test[,18]
@@ -33,12 +33,32 @@
   accuracy
   
 ## Logistic Regression  
+  mylogit <- glm(homeWin ~ RPM_weight.0 + ORPM_weight.0 + DRPM_weight.0 + PER_weight.0 + 
+                   RPM_weight.1 + ORPM_weight.1 + DRPM_weight.1 + PER_weight.1 + home, data=train,
+                 family = "binomial")
+  
+  logit_preds <- as.data.frame(predict(mylogit, newdata=xtest, type="response"))
+  logit_preds$class <- ifelse(logit_preds[,1] >= .5, 1, 0)
+  logit_preds <- cbind(logit_preds, ytest)
+  logit_preds$result <- abs(logit_preds[,2] - logit_preds[,3])
+  logit_accurary <- 1 - sum(logit_preds$result)/length(ytest)
+  logit_accurary
   
 ## Linear Regression
+  mylinear <- lm(homeWin ~ RPM_weight.0 + ORPM_weight.0 + DRPM_weight.0 + PER_weight.0 + 
+                   RPM_weight.1 + ORPM_weight.1 + DRPM_weight.1 + PER_weight.1 + home, data=train)
+  linear_preds <- as.data.frame(predict(mylinear, newdata=xtest, type="response"))
+  linear_preds$class <- ifelse(linear_preds[,1] >= .5, 1, 0)
+  linear_preds <- cbind(linear_preds, ytest)
+  linear_preds$result <- abs(linear_preds[,2] - linear_preds[,3])
+  linear_accurary <- 1 - sum(linear_preds$result)/length(ytest)
+  linear_accurary
   
 ## Support Vector Machine
   
-## Non parametric regression 
+  
+## Non parametric regression
+  
   
   
   

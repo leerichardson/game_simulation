@@ -56,9 +56,7 @@ for(i in 1:1000){
 
   ## Loop through each match and probability of a season
   for(match in match_ids){
-    ## Print the match ID
-    print(match)
-    
+
     # Generate uniform random number
     res <- runif(1)
     
@@ -78,5 +76,8 @@ for(i in 1:1000){
   }
 }
 
+### Check out the results 
+  means <- apply(season_df, 1, mean) 
+  ses <- apply(season_df, 1, sd)
 
 

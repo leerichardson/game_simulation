@@ -36,7 +36,8 @@ game_train <- dbGetQuery(con, 'SELECT gameScore.match_id, gameScore.gameDate, ga
       visit_team_score + home + playerId + playerName, FUN=c(mean), data=game_train)
 
 ### ASSIGN NULL VALUES TO 0 FOR RPM ####
-  game_train[is.na(game_train)] <- 0
+  game_train[c("PER.mean")][is.na(game_train[c("PER.mean")])] <- 15
+  game_train[c("RPM.mean", "DRPM.mean", "ORPM.mean")][is.na(game_train[c("RPM.mean", "DRPM.mean", "ORPM.mean")])] <- 0  
 
 ### CONSTRUCT A WEIGHTED AVERAGE OF OFFENSIVE AND DEFENSIVE RPM FOR BOTH TEAMS ###
 #   detach(package:dplyr)    
@@ -124,10 +125,10 @@ full_game_summary <- dbGetQuery(con, 'SELECT gameScore.match_id, gameScore.gameD
                                visit_team_score + home + playerId + playerName, FUN=c(mean), data=gt)
    
      ### ASSIGN NULL VALUES TO 0 FOR RPM ####
-     game_train[is.na(game_train)] <- 0
+     game_train[c("RPM.mean", "DRPM.mean", "ORPM.mean")][is.na(game_train[c("RPM.mean", "DRPM.mean", "ORPM.mean")])] <- 0  
     
-     ## SET 0 PER's TO 15's 
-     
+     ## SET MISSING PER's TO 15's 
+     game_train[c("PER.mean")][is.na(game_train[c("PER.mean")])] <- 15
      
      ### CONSTRUCT A WEIGHTED AVERAGE OF OFFENSIVE AND DEFENSIVE RPM FOR BOTH TEAMS ###
      total_mins <- ddply(game_train, .(home), summarise, total_mins = sum(avg_MIN.mean))
