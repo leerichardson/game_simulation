@@ -4,7 +4,7 @@
 #########################################################################
 
 ## SET WORKING DIRCTORY ##
-setwd("C:/Users/Lee/game_simulation")
+setwd("C:/Users/leeri_000/basketball_stats/game_simulation")
 
 ## LIBRARIES
 library("dplyr")
@@ -49,6 +49,10 @@ colnames(season_df) = paste("season_", 1:1000, sep="")
 ## Get the unique match Id's for a given season
 match_ids <- unique(probs$match_id)
 
+## Get random number for each_row
+random_outcomes <- runif(length(probs[,1]))
+probs <- cbind(probs, random_outcomes)
+
 ## Loop through each season
 for(i in 1:1000){
 
@@ -66,11 +70,10 @@ for(i in 1:1000){
     # Using the random number, assign the winner of the game to the data frame
     if(res <= game$away_prob){
       ## Iterate the season data frame for the away team
-      print("Away team wins!")
+
       season_df[as.character(game$visit_team), i] = season_df[as.character(game$visit_team), i] + 1
       
     } else{
-      print("Home Team wins!")
       season_df[as.character(game$home_team), i] = season_df[as.character(game$home_team), i] + 1
     } 
   }
@@ -79,5 +82,11 @@ for(i in 1:1000){
 ### Check out the results 
   means <- apply(season_df, 1, mean) 
   ses <- apply(season_df, 1, sd)
+
+## Save the outcomes 
+  write.csv(cbind(means, ses), "scripts/sim_2013.csv")
+
+
+
 
 

@@ -10,6 +10,18 @@
 
 - Look into Brooklyn (0 wins?, maybe the year they moved)
 
+- Write a script that obtains the current NBA rosters so we can simulate the 2014 season 
+
+---------- REALISTIC PROJECT GOALS ------------------------------
+
+- Write a script that obtains the current NBA rosters so we can simulatethe 2014 season 
+
+- Try out more algorithms on the RAPM dataset
+
+- Get new feature which has last seasons win percentage. Maybe compute current season as well?
+
+- Get more than one season incorporated into the statistics? (Big Reach)
+
 
 ------- MIDTERM REVIEW NOTES ----------------
 
