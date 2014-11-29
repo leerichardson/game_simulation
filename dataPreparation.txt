@@ -1,0 +1,27 @@
+Data Preparation
+For this project since we don't have ready-made dataset, we were making efforts getting the data from available resources. This basically includes the selection of data source and steps for ETL.
+
+Data Source
+A very popular resource for nba statistics is the ESPN NBA website (http://espn.go.com/nba/). Specifically, among all information about nba games, we are interested in below list of nba statistics:
+Game score: includes the datasets of each game between 2009 and 2014 up to date. The dataset includes home team, visiting team, game score for either team, as well as the game date and game season. 
+Game score here will be the target value we are trying to build a model to learn and predict in further works.
+Game detail: for each of the game we are not only interested in the final score, it'll also be helpful that we get information about the statistics for each player in that game, 
+including field minutes, points, shoots attempted / made, rebounds, steals, fouls, etc.
+Player detail: for each of the players, we are also have a list with 50 features for each player in the season. All standard features listed on ESPN NBA website for players are included. 
+For ESPN NBA data eventually we got information of 7139 games and detailed statistics about 5511 player * season from 30 teams.
+
+Apart from the standard statistics from ESPN NBA website, it's worth mentioning that we are also retrieving a bunch of fresh out statistics at Basketball Reference website (http://www.basketball-reference.com/). 
+Here we can find not only most of the conventional statistics available, but also the Real Plus Minus (RPM) statistics. 
+Specifically RPM statistics includes ORPM (offense), DRPM (defense), RPM (overall), etc. 
+These features will be essential for our further experiments, since RPM statistics has just become the state of the art of features in capturing the performance of any player.
+
+
+ETL
+Extraction using web crawlers
+For ESPN NBA statistics we wrote crawlers in Python to get the data. BeautifulSoup package was used to parse the web html pages. For Basketball Reference website we were using R packages for similar tasks.
+Transforming: merging two data sources
+Since we have two different data sources, we need to treat the data separately to ensure the merging of two datasets successful. Within ESPN dataset the join for each tables are generally without problems, since we already get the match ids and player ids for each game or player, but at Basketball References we do not have such ids. Therefore for player information we are using player names to perform the join operation. Therefore we manually checked all the name mismatches and fixed the spelling mismatches.
+Another frequently happening issue on data is missing values. For most of statistics we are just using average value among all records for that feature. 
+Loading data to database
+We are using SQLite database to store all cleaned up data. The design of the database follows the 3rd normal form to ensure there is no redundancy, and indexes were built on frequent used keys to ensure the queries gets speed up.
+The reason we are using database is that we are frequently trying different format of the feature tables, so we need to ensure the query and join operations on primal datasets are built on a solid and trustworthy basis.
