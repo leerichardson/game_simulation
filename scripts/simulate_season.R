@@ -4,7 +4,7 @@
 #########################################################################
 
 ## SET WORKING DIRCTORY ##
-setwd("C:/Users/leeri_000/basketball_stats/game_simulation")
+setwd("C:/Users/Lee/game_simulation")
 
 ## LIBRARIES
 library("dplyr")
@@ -70,10 +70,10 @@ for(i in 1:1000){
     # Using the random number, assign the winner of the game to the data frame
     if(res <= game$away_prob){
       ## Iterate the season data frame for the away team
-
       season_df[as.character(game$visit_team), i] = season_df[as.character(game$visit_team), i] + 1
       
     } else{
+      ## Iterate the season data frame for the home team 
       season_df[as.character(game$home_team), i] = season_df[as.character(game$home_team), i] + 1
     } 
   }

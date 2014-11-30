@@ -10,27 +10,15 @@
 
 - Look into Brooklyn (0 wins?, maybe the year they moved)
 
-- Write a script that obtains the current NBA rosters so we can simulate the 2014 season 
-
----------- REALISTIC PROJECT GOALS ------------------------------
-
-- Write a script that obtains the current NBA rosters so we can simulatethe 2014 season 
-
-- Try out more algorithms on the RAPM dataset
-
-- Get new feature which has last seasons win percentage. Maybe compute current season as well?
-
-- Get more than one season incorporated into the statistics? (Big Reach)
-
+- Look into Rookie minutes
 
 ------- MIDTERM REVIEW NOTES ----------------
 
-RAPM - Individual (scalar) player statistic.
+- RAPM - Individual (scalar) player statistic.
 
 Putting the dataset online. Github? Other suggestions on how to do this? Need to make sure it's totally accurate
 
 RPI section- Talk about how we need to use it to give some signals about how good the team was last year (Which we don't have in our current dataset). Maybe we don't need tiers, and can use the pure metrix as a feature. 
-
 
 ----- FUTURE GOALS -------------
 
@@ -41,3 +29,36 @@ RPI section- Talk about how we need to use it to give some signals about how goo
 - Mention home team wins 60 % of games, maybe get a table of JUST home teams 
 
 - How to simulate games without knowing the players who played beforehand ???
+
+- Model each teams scores to be able to compare with the spreads 
+
+
+----------- PROJECT RESULTS -------------------------------
+
+- Mention that we maxed out with the data we had at around there. maybe we need to use different information. (Specifically, maybe we need in season winning percentages along with data from more than JUST the previous seaason)
+
+- Why was 2013 so much less predictable than the other seasons?
+
+---- POSTER ----------
+
+- INTRODUCTION/GOALS
+
+	- Predict the outcomes of NBA games/seasons as accurately as possible
+
+- DATA- picture of database, explanation of the sources
+
+- ALGORITHMS - Display winning pecentages of different years across all of our algorithms
+
+- FEATURES - Note that the home team is our baseline percentage 
+
+	- RPI- Explain why we used it (Need information on the teams, not just players: IE: spurs) (Team culture, spurs, etc...)
+	- Feature selection 
+
+- SIMULATION comparison with other methods from this season. (CONFIDENCE BAND)
+
+- CONCLUSION AND FUTURE DIRECIONS-
+	
+	- 
+	- 
+
+- REFERENCES

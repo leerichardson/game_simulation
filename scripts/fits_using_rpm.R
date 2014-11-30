@@ -4,19 +4,20 @@
 ## LIBRARIES
   library("dplyr")
   library("e1071")
+  library("randomForest")
   
 ## READ IN OUR FEATURE DATASETS
-  large_data <- read.csv("C:/Users/Lee/game_simulation/nba_rRegression_chi//regTable.csv")
   data <- read.csv("scripts/rpm_dataset.csv")
-  
+  data_rpi <- read.csv("scripts/rpi.csv")
+
 ## ADD home feature and win/loss column
   data <- mutate(data, home = 1)
   data$homeWin <- ifelse(data$home_team_score > data$visit_team_score, 1, 0)
   
 ## Set up datasets ##   
   years <- c(2008, 2009, 2010, 2011, 2012, 2013)
-  train = filter(data, game_year %in% c(2008, 2009, 2010, 2011, 2012))
-  test = filter(data, game_year == 2013)
+  train = filter(data, game_year %in% c(2008))
+  test = filter(data, game_year == 2009)
   
   xtest = test[,9:17]
   ytest = test[,18]
@@ -54,12 +55,15 @@
   linear_accurary <- 1 - sum(linear_preds$result)/length(ytest)
   linear_accurary
   
-## Support Vector Machine
-  
-  
-## Non parametric regression
-  
-  
-  
+## Random Forest
+  rf <- randomForest(homeWin ~ RPM_weight.0 + ORPM_weight.0 + DRPM_weight.0 + PER_weight.0 + 
+  RPM_weight.1 + ORPM_weight.1 + DRPM_weight.1 + PER_weight.1 + home, 
+  data=train, type="classification")
+  rf_preds <- as.data.frame(predict(rf, xtest))
+  rf_preds <- cbind(rf_preds, ytest)
+  rf_preds$class <- ifelse(rf_preds[,1] >= .5, 1, 0)
+  rf_preds$result <- abs(rf_preds[,2] - rf_preds[,3])
+  rf_accurary <- 1 - sum(rf_preds$result)/length(ytest)
+  rf_accurary  
   
   
