@@ -93,23 +93,6 @@
 
 \begin{alertblock}{Objectives}
 
-\begin{itemize}
-\item Generate \textbf{micro-data} which simulates U.S. population
-\begin{itemize}
-
-\item Households and Person Records
-\end{itemize}
-\item Reconcile hierarchies of U.S. geography
-\item Utilize \textbf{IPFP} to create populations
-\begin{itemize}
-\item Accurately reflect U.S. population
-\end{itemize}
-\item Assign synthetic households appropriate locations
-\begin{itemize}
-\item Latitude and Longitude
-\end{itemize}
-\item Reproduce and improve upon results of a previous group, RTI
-\end{itemize}
 
 \end{alertblock}
 
@@ -118,58 +101,6 @@
 %----------------------------------------------------------------------------------------
 
 \begin{block}{Introduction}
-
-\textbf{MIDAS} (Models of Infectious Disease Agent Study) 
-\begin{itemize}
-\item Develops computational models of the interaction of infectious agents
-\item Models run on synthetic \textbf{micro-data}
-\begin{itemize}
-\item Household records
-
-
-\begin{table}
-\centering
-\resizebox{\linewidth}{!}{
-  \begin{tabular}{|c|c|c|c|c|c|c|c|}
-    \hline
-    House ID & Geo ID & Race& Income& Age  & Size & Lat.& Long. \\ \hline
-    11815531 & 0103003 & 2  & \$29,300 & 50 & 3 & 40.43826 & -79.9835\\ 
-    \hline
-  \end{tabular}}
-%\caption{Synthetic household population example}
-\label{tab:synh1}
-\end{table}
-
-\item Person records
-\begin{table}
-\centering
-\resizebox{\linewidth}{!}{
-  \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
-    \hline
-    House ID & Geo ID & Age & Sex & Race & SP Order & Relate &School ID & Work ID \\ \hline
-    11815531 & 0103003 & 50 & 2 & 2 & 1 & 0 & NA & 513987696\\ \hline
-    11815531 & 0103003 & 19 & 1 & 2 & 2 & 2 & NA & NA\\ \hline
-	11815531& 0103003 & 18 & 2 & 2 & 3 & 2 & 450086847& NA \\
-    \hline
-  \end{tabular}}
-%\caption{Synthetic person population example}
-\label{tab:synp1}
-\end{table}
-\end{itemize}
-
-
-\end{itemize}
-
-\textbf{Generating micro-data for the U.S}
-\begin{itemize}
-\item Utilize \textbf{U.S. Census Products}
-\begin{itemize}
-\item American Community Survey (ACS) data
-\item TIGER Map Products
-\end{itemize}
-\item Implement \textbf{IPFP} (Iterative Proportional Fitting Procedure) and assign locations
-\end{itemize}
-
 
 
 \end{block}
@@ -323,11 +254,6 @@ Using our adapted methods, we are able to reproduce the results of RTI.  These p
 %----------------------------------------------------------------------------------------
 
 \begin{block}{Future Work}
-\begin{itemize}
-\item Include school and workplace data for individual synthetic records
-\item Generate group quarters, such as university dorms, prisons, and military bases, and group quarters residents
-\item Allow the user to specifiy the year, perhaps to study past epidemics
-\end{itemize}
 
 \end{block}
 
@@ -370,12 +296,6 @@ Using our adapted methods, we are able to reproduce the results of RTI.  These p
 \end{itemize}
 
 \end{alertblock}
-
-\begin{center}
-
-\includegraphics[width=0.3\linewidth]{logo.png} 
-
-\end{center}
 
 %----------------------------------------------------------------------------------------
 

@@ -40,4 +40,6 @@ RPI section- Talk about how we need to use it to give some signals about how goo
 
 - Mention home team wins 60 % of games, maybe get a table of JUST home teams 
 
-- How to simulate games without knowing the players who played beforehand ???
+- How to simulate games without knowing the players who played beforehand (Using % games payed of previous season to choose players involved pregame)
+
+- How does the predictions do against the spread?

@@ -19,8 +19,8 @@ data$homeWin <- ifelse(data$home_team_score > data$visit_team_score, 1, 0)
 
 ## Set up datasets ##   
 years <- c(2008, 2009, 2010, 2011, 2012, 2013)
-train = filter(data, game_year %in% c(2008, 2009, 2010, 2011, 2012))
-test = filter(data, game_year == 2013)
+train = filter(data, game_year %in% c(2008, 2009, 2010, 2011))
+test = filter(data, game_year == 2012)
 
 xtest = test[,9:17]
 ytest = test[,18]
@@ -84,7 +84,7 @@ for(i in 1:1000){
   ses <- apply(season_df, 1, sd)
 
 ## Save the outcomes 
-  write.csv(cbind(means, ses), "scripts/sim_2013.csv")
+  write.csv(cbind(means, ses), "scripts/sim_2012.csv")
 
 
 

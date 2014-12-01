@@ -6,7 +6,6 @@
   library("e1071")
   
 ## READ IN OUR FEATURE DATASETS
-  large_data <- read.csv("C:/Users/Lee/game_simulation/nba_rRegression_chi//regTable.csv")
   data <- read.csv("scripts/rpm_dataset.csv")
   
 ## ADD home feature and win/loss column
@@ -14,9 +13,8 @@
   data$homeWin <- ifelse(data$home_team_score > data$visit_team_score, 1, 0)
   
 ## Set up datasets ##   
-  years <- c(2008, 2009, 2010, 2011, 2012, 2013)
-  train = filter(data, game_year %in% c(2008, 2009, 2010, 2011, 2012))
-  test = filter(data, game_year == 2013)
+  train = filter(data, game_year %in% c(2008, 2009, 2010, 2011))
+  test = filter(data, game_year == 2012)
   
   xtest = test[,9:17]
   ytest = test[,18]
@@ -53,13 +51,7 @@
   linear_preds$result <- abs(linear_preds[,2] - linear_preds[,3])
   linear_accurary <- 1 - sum(linear_preds$result)/length(ytest)
   linear_accurary
-  
-## Support Vector Machine
-  
-  
-## Non parametric regression
-  
-  
+
   
   
   

@@ -16,6 +16,7 @@
 # Read in the game score and player tables 
   gs <- dbGetQuery(con, 'SELECT * FROM gameScore')
   p <- dbGetQuery(con, 'SELECT * FROM players')  
+  rpm_table <- dbGetQuery(con, 'SELECT * FROM RPM WHERE year_ = 2010 AND Tm = "bkn"')
 
 ###############################################################################################
 ################### SHOWS HOW WE ARE GETTING DATA FROM ONE PARTICULAR GAME ####################
