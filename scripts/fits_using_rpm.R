@@ -12,20 +12,18 @@
 
 ## ADD home feature and win/loss column
   data <- mutate(data, home = 1)
+  data <- mutate(data, RPM_dif = RPM_weight.1 - RPM_weight.0)
   data$homeWin <- ifelse(data$home_team_score > data$visit_team_score, 1, 0)
   
 ## Set up datasets ##   
-  train = filter(data, game_year %in% c(2008, 2009, 2010, 2011))
-  test = filter(data, game_year == 2012)
-
   years <- c(2008, 2009, 2010, 2011, 2012, 2013)
-  train = filter(data, game_year %in% c(2008, 2009, 2011, 2012))
+  train = filter(data, game_year %in% c(2008, 2009, 2011, 2013))
   test = filter(data, game_year == 2013)
   
-  xtest = test[,9:17]
-  ytest = test[,18]
-  xtrain = train[,9:17]
-  ytrain = train[,18]
+  xtest = test[,9:18]
+  ytest = test[,19]
+  xtrain = train[,9:18]
+  ytrain = train[,19]
   
 ## Naive Bayes  
   model <- naiveBayes(xtrain, ytrain)
@@ -37,7 +35,7 @@
   accuracy
   
 ## Logistic Regression  
-  mylogit <- glm(homeWin ~ RPM_weight.0 + RPM_weight.1 + PER_weight.0 + PER_weight.1, data=train, family = "binomial")
+  mylogit <- glm(homeWin ~ RPM_dif, data=train, family = "binomial")
   logit_preds <- as.data.frame(predict(mylogit, newdata=xtest, type="response"))
   logit_preds$class <- ifelse(logit_preds[,1] >= .5, 1, 0)
   logit_preds <- cbind(logit_preds, ytest)
