@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.8.5)  30 NOV 2014 09:46
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.8.5)  30 NOV 2014 20:02
 entering extended mode
-**C:/Users/leeri_000/basketball_stats/game_simulation/poster_final_paper/midas_
-poster_7_18_14.tex
+**C:/Users/leeri_000/basketball_stats/game_simulation/poster_final_paper/nba_ou
+tcomes_poster.tex
 
-(C:/Users/leeri_000/basketball_stats/game_simulation/poster_final_paper/midas_p
-oster_7_18_14.tex
+(C:/Users/leeri_000/basketball_stats/game_simulation/poster_final_paper/nba_out
+comes_poster.tex
 LaTeX2e <2011/06/27>
 Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
 abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
@@ -116,8 +116,8 @@ Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 \Gm@dimlist=\toks15
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\geometry\geometry.cfg"))
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\size11.clo"
-File: size11.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\extsizes\size14.clo"
+File: size14.clo 1999/11/11 v1.4a NON-Standard LaTeX file (size option)
 )
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\pgf\basiclayer\pgfcore.sty"
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\graphicx.sty"
@@ -1101,8 +1101,8 @@ Package: booktabs 2005/04/14 v1.61803 publication quality tables
 \@lastruleclass=\count177
 \@thisrulewidth=\dimen213
 )
-(C:\Users\leeri_000\basketball_stats\game_simulation\poster_final_paper\midas_p
-oster_7_18_14.aux)
+(C:\Users\leeri_000\basketball_stats\game_simulation\poster_final_paper\nba_out
+comes_poster.aux)
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 74.
 LaTeX Font Info:    ... okay on input line 74.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 74.
@@ -1146,12 +1146,12 @@ File: t1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
 * \topmargin=-36.135pt
 * \headheight=14.22636pt
 * \headsep=0.0pt
-* \topskip=11.0pt
+* \topskip=14.0pt
 * \footskip=14.22636pt
 * \marginparwidth=4.0pt
 * \marginparsep=10.0pt
 * \columnsep=10.0pt
-* \skip\footins=10.0pt plus 4.0pt minus 2.0pt
+* \skip\footins=12.0pt plus 4.0pt minus 2.0pt
 * \hoffset=0.0pt
 * \voffset=0.0pt
 * \mag=1000
@@ -1190,10 +1190,10 @@ LaTeX Info: Redefining \ref on input line 74.
 LaTeX Info: Redefining \pageref on input line 74.
 LaTeX Info: Redefining \nameref on input line 74.
 
-(C:\Users\leeri_000\basketball_stats\game_simulation\poster_final_paper\midas_p
-oster_7_18_14.out)
-(C:\Users\leeri_000\basketball_stats\game_simulation\poster_final_paper\midas_p
-oster_7_18_14.out)
+(C:\Users\leeri_000\basketball_stats\game_simulation\poster_final_paper\nba_out
+comes_poster.out)
+(C:\Users\leeri_000\basketball_stats\game_simulation\poster_final_paper\nba_out
+comes_poster.out)
 \@outlinefile=\write5
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\beamer\base\translator\dicts\tran
@@ -1225,14 +1225,15 @@ LaTeX Info: Redefining \includegraphics on input line 74.
 ABD: EverySelectfont initializing macros
 LaTeX Info: Redefining \selectfont on input line 74.
 
-(C:\Users\leeri_000\basketball_stats\game_simulation\poster_final_paper\midas_p
-oster_7_18_14.nav)
+(C:\Users\leeri_000\basketball_stats\game_simulation\poster_final_paper\nba_out
+comes_poster.nav)
 LaTeX Font Info:    Calculating math sizes for size <14.88> on input line 74.
 LaTeX Font Info:    Try loading font information for OT1+lmr on input line 74.
  ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lm\ot1lmr.fd"
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Try loading font information for OML+lmm on input line 74.
+
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lm\omllmm.fd"
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
@@ -1252,98 +1253,47 @@ LaTeX Font Warning: Font shape `OMX/cmex/m/n' in size <10.41595> not available
 
 LaTeX Font Info:    External font `cmex7' loaded for size
 (Font)              <7.44> on input line 74.
-LaTeX Font Info:    Try loading font information for T1+lmr on input line 306.
+LaTeX Font Info:    Try loading font information for T1+lmr on input line 307.
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lm\t1lmr.fd"
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Calculating math sizes for size <30.85> on input line 306.
-
-
-LaTeX Font Warning: Font shape `OMX/cmex/m/n' in size <30.85> not available
-(Font)              size <24.88> substituted on input line 306.
-
-
-LaTeX Font Warning: Font shape `OMX/cmex/m/n' in size <21.59491> not available
-(Font)              size <20.74> substituted on input line 306.
-
-
-LaTeX Font Warning: Font shape `OMX/cmex/m/n' in size <15.425> not available
-(Font)              size <14.4> substituted on input line 306.
-
-
-LaTeX Warning: File `midas.jpg' not found on input line 306.
-
-
-! Package pdftex.def Error: File `midas.jpg' not found.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.306 \end{frame}
-                  % End of the enclosing frame
-Using draft setting for this image.
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 306.
-
-("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lm\t1lmtt.fd"
-File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-LaTeX Font Info:    Try loading font information for TS1+lmss on input line 306
+LaTeX Font Info:    Try loading font information for TS1+lmss on input line 307
 .
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lm\ts1lmss.fd"
 File: ts1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 
-LaTeX Warning: File `censusgeochart.png' not found on input line 306.
+LaTeX Warning: Citation `beckman.baggerly.mckay96' on page 1 undefined on input
+ line 307.
 
 
-! Package pdftex.def Error: File `censusgeochart.png' not found.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.306 \end{frame}
-                  % End of the enclosing frame
-Using draft setting for this image.
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-LaTeX Warning: Citation `rtisynthpopv1' on page 1 undefined on input line 306.
+LaTeX Warning: Reference `alleghenysampling' on page 1 undefined on input line 
+307.
 
 
 LaTeX Warning: Citation `beckman.baggerly.mckay96' on page 1 undefined on input
- line 306.
+ line 307.
 
 
-LaTeX Warning: File `allegheny_sample.pdf' not found on input line 306.
+LaTeX Warning: Reference `alleghenysampling' on page 1 undefined on input line 
+307.
+
+LaTeX Font Info:    Calculating math sizes for size <30.85> on input line 307.
+
+LaTeX Font Warning: Font shape `OMX/cmex/m/n' in size <30.85> not available
+(Font)              size <24.88> substituted on input line 307.
 
 
-! Package pdftex.def Error: File `allegheny_sample.pdf' not found.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.306 \end{frame}
-                  % End of the enclosing frame
-Using draft setting for this image.
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
+LaTeX Font Warning: Font shape `OMX/cmex/m/n' in size <21.59491> not available
+(Font)              size <20.74> substituted on input line 307.
 
 
-(C:\Users\leeri_000\basketball_stats\game_simulation\poster_final_paper\midas_p
-oster_7_18_14.bbl
+LaTeX Font Warning: Font shape `OMX/cmex/m/n' in size <15.425> not available
+(Font)              size <14.4> substituted on input line 307.
 
-LaTeX Warning: Empty `thebibliography' environment on input line 3.
 
-)
-Overfull \hbox (4.99402pt too wide) detected at line 306
+Overfull \hbox (4.99402pt too wide) detected at line 307
 [][][] [][][][][][][][][] [][][][][][][][][] [][][][][][][][][] [][][][][][][][
 ][] [][][][][][][][][] [][][][][][][] 
  []
@@ -1359,14 +1309,14 @@ Overfull \hbox (88.20334pt too wide) has occurred while \output is active
 \tf@nav=\write6
 \tf@toc=\write7
 \tf@snm=\write8
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 308.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 308.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 309.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 309.
 
-(C:\Users\leeri_000\basketball_stats\game_simulation\poster_final_paper\midas_p
-oster_7_18_14.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 308.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 308.
-Package rerunfilecheck Info: File `midas_poster_7_18_14.out' has not changed.
+(C:\Users\leeri_000\basketball_stats\game_simulation\poster_final_paper\nba_out
+comes_poster.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 309.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 309.
+Package rerunfilecheck Info: File `nba_outcomes_poster.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
 
 
@@ -1376,25 +1326,28 @@ LaTeX Font Warning: Size substitutions with differences
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 308.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 309.
  ) 
 Here is how much of TeX's memory you used:
- 21978 strings out of 493921
- 432855 string characters out of 3144865
- 563763 words of memory out of 3000000
- 24712 multiletter control sequences out of 15000+200000
- 82806 words of font info for 72 fonts, out of 3000000 for 9000
+ 21904 strings out of 493921
+ 431412 string characters out of 3144865
+ 550240 words of memory out of 3000000
+ 24651 multiletter control sequences out of 15000+200000
+ 73489 words of font info for 68 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 60i,16n,71p,472b,1449s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ts1.enc}{C:/Program 
-Files (x86)/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}<C:/Program Files (x86)/MiK
-TeX 2.9/fonts/type1/public/lm/lmbx12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fon
-ts/type1/public/lm/lmr17.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/pub
-lic/lm/lmss17.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmss
-bx10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmtt12.pfb>
-Output written on midas_poster_7_18_14.pdf (1 page, 137640 bytes).
+ 60i,16n,71p,471b,1453s stack positions out of 5000i,500n,10000p,200000b,50000s
+pdfTeX warning (dest): name{alleghenysampling} has been referenced but does n
+ot exist, replaced by a fixed one
+
+{C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}{C:/Program Fil
+es (x86)/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ts1.enc}<C:/Program Files (x86)/MiKTe
+X 2.9/fonts/type1/public/lm/lmbx12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts
+/type1/public/lm/lmr17.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/publi
+c/lm/lmss17.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmssbx
+10.pfb>
+Output written on nba_outcomes_poster.pdf (1 page, 108661 bytes).
 PDF statistics:
- 52 PDF objects out of 1000 (max. 8388607)
- 6 named destinations out of 1000 (max. 500000)
+ 47 PDF objects out of 1000 (max. 8388607)
+ 4 named destinations out of 1000 (max. 500000)
  49 words of extra memory for PDF output out of 10000 (max. 10000000)
 

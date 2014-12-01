@@ -15,22 +15,21 @@ results_2013 <- filter(results, year == 2013)
 results_2013_sorted <- results_2013[order(results_2013$team),]
 
 ## Get the dataset with simulation output for 2013
-simulation <- read.csv("scripts/sim_2013.csv")
-sim_sort <- simulation[order(simulation$X),]
+simulation <- read.csv("scripts/sim_2013_logit.csv")
+sim_sort_logit <- simulation[order(simulation$X),]
 
 ## Get comparison dataframe and mean and absolute error losses
-compare <- cbind(results_2013_sorted, sim_sort)
-compare$squared <- (compare$means - compare$wins)^2
-rmse <- sqrt(mean(compare$squared))
+compare_2013_logit <- cbind(results_2013_sorted, sim_sort_logit)
+compare_2013_logit$squared <- (compare_2013_logit$means - compare_2013_logit$wins)^2
+rmse <- sqrt(mean(compare_2013_logit$squared))
 rmse
 
-compare$absolute <- abs(compare$means - compare$wins)
-mae <- mean(compare$absolute)
+compare_2013_logit$absolute <- abs(compare_2013_logit$means - compare_2013_logit$wins)
+mae <- mean(compare_2013_logit$absolute)
 mae
 
-
 ############################################################
-################# 2013 NAIVE BAYES##########################
+################# 2013 NAIVE BAYES ##########################
 ############################################################
 
 ## Get 2013 Results 
