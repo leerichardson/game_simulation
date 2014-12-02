@@ -45,18 +45,30 @@ RPI section- Talk about how we need to use it to give some signals about how goo
 
 ---- POSTER ----------
 
+Figures over text
+
 - INTRODUCTION/GOALS
 
 	- Predict the outcomes of NBA games/seasons as accurately as possible
 
-- DATA- picture of database, explanation of the sources
+	- Using out prediction algorithms, predict season win totals for the coming season using training data 
+
+
+- DATA- picture of database, explanation of the sources (CHI WILL DO THIS)
 
 - ALGORITHMS - Display winning pecentages of different years across all of our algorithms
+
+	- Mention type 1 errors
+
+	- Why did logitstic regression do the best
+
 
 - FEATURES - Note that the home team is our baseline percentage 
 
 	- RPI- Explain why we used it (Need information on the teams, not just players: IE: spurs) (Team culture, spurs, etc...)
-	- Feature selection 
+
+	- Feature selection (Which features were the best for prediciton? Which features weren't as useful)
+
 
 - SIMULATION comparison with other methods from this season. (CONFIDENCE BAND)
 
@@ -70,4 +82,23 @@ RPI section- Talk about how we need to use it to give some signals about how goo
 	
 	- Using current season data as a feature: IE: Split the season into K clusters and compute winning percentage in every clister up to the one being predicted (Could have saved Phoenix projection midway through)
 
+	- Display our RMSE and MAE errors 
+
+	- Display our season predictions, fic up the figure a little bit
+
+
+- CONCLUSION AND FUTURE DIRECIONS-
+	
+	- Some systems (IE: BBStats) project the RAPM for the next year using aging, and most importantly more than one previous season. We only used the past season
+	
+	- We could imcorporate data from the current season, after splitting the season into chunks, to update are valuation of the teams. This was we can fix a team like Phoenix midway through the year if it turns out we were very far off. 
+
 - REFERENCES
+	
+	- RAPM References
+
+	- NBA Oracle 
+
+	- Link to the Season long projections table we're comparing against. 
+
+	
