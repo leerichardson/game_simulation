@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.8.20)  1 DEC 2014 18:44
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.8.20)  2 DEC 2014 11:49
 entering extended mode
 **C:/Users/Lee/game_simulation/poster_final_paper/nba_outcomes_poster.tex
 (C:/Users/Lee/game_simulation/poster_final_paper/nba_outcomes_poster.tex
@@ -1325,7 +1325,7 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 311.
 Here is how much of TeX's memory you used:
  21904 strings out of 493921
  431067 string characters out of 3144882
- 553219 words of memory out of 3000000
+ 553053 words of memory out of 3000000
  24651 multiletter control sequences out of 15000+200000
  73489 words of font info for 68 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
@@ -1339,7 +1339,7 @@ X 2.9/fonts/type1/public/lm/lmbx12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts
 /type1/public/lm/lmr17.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/publi
 c/lm/lmss17.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmssbx
 10.pfb>
-Output written on nba_outcomes_poster.pdf (1 page, 109274 bytes).
+Output written on nba_outcomes_poster.pdf (1 page, 109245 bytes).
 PDF statistics:
  47 PDF objects out of 1000 (max. 8388607)
  4 named destinations out of 1000 (max. 500000)
