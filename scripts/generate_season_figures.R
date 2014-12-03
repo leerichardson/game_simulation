@@ -1,5 +1,8 @@
+## Load in libraries
+library(dplyr)
+
 ## SET WORKING DIRCTORY ##
-setwd("C:/Users/leeri_000/basketball_stats/game_simulation")
+setwd("C:/Users/Lee/game_simulation")
 
 ## Read in the logit sims 
 simulation <- read.csv("scripts/sim_2013_logit.csv")
@@ -28,8 +31,11 @@ team_names <- unique(results_2013$team)
 for(name in team_names){
   season_result <- as.numeric(season_df[season_df$X == name,])
   hist(season_result, main=paste("Wins for", toupper(name), sep=" "), xlab="Wins"
-       , breaks=10)
-  abline(v=results_2013[results_2013$team == name, "wins"], col="red")
-  abline(v=results_2013[results_2013$team == name, "lower"], col="blue")
-  abline(v=results_2013[results_2013$team == name, "upper"], col="blue")
+       , breaks=15, xlim=c(15, 65))
+  abline(v=results_2013[results_2013$team == name, "wins"], col="red", lwd=3)
+  abline(v=results_2013[results_2013$team == name, "lower"], col="blue", lwd=3)
+  abline(v=results_2013[results_2013$team == name, "upper"], col="blue", lwd=3)
 }
+
+
+

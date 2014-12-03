@@ -76,7 +76,7 @@ Figures over text
 
 	- Logit estimates are more conservative (How many over 60, under 20, etc...)
 
-- CONCLUSION AND FUTURE DIRECIONS-
+- FUTURE DIRECIONS-
 	
 	- Using projections as in season features, accounting for more seasons in the past than just the most recent
 	
@@ -92,6 +92,12 @@ Figures over text
 	- Some systems (IE: BBStats) project the RAPM for the next year using aging, and most importantly more than one previous season. We only used the past season
 	
 	- We could imcorporate data from the current season, after splitting the season into chunks, to update are valuation of the teams. This was we can fix a team like Phoenix midway through the year if it turns out we were very far off. 
+
+	- Evidence that RPM is the best predictive statistic, much better than Box Score numbers
+
+	- Why was 2013 so much less predictable? Showed up that way in all of our algorithms
+
+	-Talk about how Logistic outperformed Naive bayes in simulations. The projections were closer to 50%, which adds up in this as opposed to classification. 
 
 - REFERENCES
 	

@@ -17,7 +17,7 @@
   
 ## Set up datasets ##   
   years <- c(2008, 2009, 2010, 2011, 2012, 2013)
-  train = filter(data, game_year %in% c(2008, 2009, 2011, 2013))
+  train = filter(data, game_year %in% c(2008, 2009, 2010, 2011, 2012))
   test = filter(data, game_year == 2013)
   
   xtest = test[,9:18]
@@ -26,7 +26,7 @@
   ytrain = train[,19]
   
 ## Naive Bayes  
-  model <- naiveBayes(xtrain, ytrain)
+  model <- naiveBayes(xtrain[,c(1,5) ], ytrain)
   preds <- as.data.frame(predict(model, xtest, type = c("raw"), threshold = 0.001))
   preds$class <- ifelse(preds[,2] > preds[,1], 1, 0)
   preds <- cbind(preds, ytest)
@@ -35,7 +35,7 @@
   accuracy
   
 ## Logistic Regression  
-  mylogit <- glm(homeWin ~ RPM_dif, data=train, family = "binomial")
+  mylogit <- glm(homeWin ~ RPM_weight.0 + ORPM_weight.0 + PER_weight.1 + PER_weight.0 , data=train, family = "binomial")
   logit_preds <- as.data.frame(predict(mylogit, newdata=xtest, type="response"))
   logit_preds$class <- ifelse(logit_preds[,1] >= .5, 1, 0)
   logit_preds <- cbind(logit_preds, ytest)
@@ -45,7 +45,7 @@
   
 ## Linear Regression
   mylinear <- lm(homeWin ~ RPM_weight.0 + ORPM_weight.0 + DRPM_weight.0 + PER_weight.0 + 
-                   RPM_weight.1 + ORPM_weight.1 + DRPM_weight.1 + PER_weight.1 + home, data=train)
+                   RPM_weight.1 + ORPM_weight.1 + DRPM_weight.1 + PER_weight.1, data=train)
   linear_preds <- as.data.frame(predict(mylinear, newdata=xtest, type="response"))
   linear_preds$class <- ifelse(linear_preds[,1] >= .5, 1, 0)
   linear_preds <- cbind(linear_preds, ytest)
@@ -55,8 +55,7 @@
   
 ## Random Forest
   rf <- randomForest(homeWin ~ RPM_weight.0 + ORPM_weight.0 + DRPM_weight.0 + PER_weight.0 + 
-  RPM_weight.1 + ORPM_weight.1 + DRPM_weight.1 + PER_weight.1 + home, 
-  data=train, type="classification")
+  RPM_weight.1 + ORPM_weight.1 + DRPM_weight.1 + PER_weight.1, data=train, type="classification")
   rf_preds <- as.data.frame(predict(rf, xtest))
   rf_preds <- cbind(rf_preds, ytest)
   rf_preds$class <- ifelse(rf_preds[,1] >= .5, 1, 0)
