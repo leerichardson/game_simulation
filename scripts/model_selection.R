@@ -13,8 +13,8 @@ null_mod <- glm(formula = homeWin ~ 1, family = "binomial", data = full_matrix)
 
 full_mod <- glm(homeWin ~ RPM_weight_0 + ORPM_weight_0 + DRPM_weight_0 + PER_weight_0 + 
 RPM_weight_1 + ORPM_weight_1 + DRPM_weight_1 + PER_weight_1 + avg_scoreDiff +
-avg_scoreDiff_home + avg_win_home + avg_scoreDiff_visit + avg_win_visit + home_rpi +
-away_rpi + avg_GP + avg_GS+avg_MIN + avg_FG_made + avg_FG_attempted +    
+avg_scoreDiff_home + avg_win_home + avg_scoreDiff_visit + avg_win_visit + log(home_rpi) +
+log(away_rpi) + avg_GP + avg_GS+avg_MIN + avg_FG_made + avg_FG_attempted +    
 avg_FGpercent + avg_ThreeP_made + avg_ThreeP_attempted + avg_ThreePpercent + avg_FT_made +
 avg_FT_attempted+ avg_FTpercent+ avg_OR+ avg_DR+ avg_REB+ avg_AST + avg_BLK+
 avg_STL+ avg_PF +avg_TO+ avg_PTS, family="binomial", data=full_matrix)
@@ -41,4 +41,19 @@ lasso_probs <- cbind(lasso_probs, ytest)
 lasso_probs$result <- abs(lasso_probs[,2] - lasso_probs[,3])
 accuracy <- 1 - sum(lasso_probs$result)/length(ytest)
 accuracy
+
+RPM weight0 & 9140.5 \\
+RPM weight 1 & 9160.6 \\
+avg MIN & 9264.2 \\
+ORPM weight 1 & 9303.3 \\
+ORPM weight 0 & 9310.8 \\
+DRPM weight 0 & 9329.1 \\
+DRPM weight 1 & 9358.2 \\
+avg scoreDiff home & 9376.9 \\
+avg AST & 9384.7 \\
+avg win visit & 9389.6 \\
+
+
+
+
 

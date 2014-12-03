@@ -74,6 +74,14 @@ Figures over text
 
 	- Looks like the logit season simulations is predicting closer to the middle of the season, which makes the estimates better/more reasonable 
 
+	- Logit estimates are more conservative (How many over 60, under 20, etc...)
+
+- FUTURE DIRECIONS-
+	
+	- Using projections as in season features, accounting for more seasons in the past than just the most recent
+	
+	- Using current season data as a feature: IE: Split the season into K clusters and compute winning percentage in every clister up to the one being predicted (Could have saved Phoenix projection midway through)
+
 	- Display our RMSE and MAE errors 
 
 	- Display our season predictions, fic up the figure a little bit
@@ -85,6 +93,12 @@ Figures over text
 	
 	- We could imcorporate data from the current season, after splitting the season into chunks, to update are valuation of the teams. This was we can fix a team like Phoenix midway through the year if it turns out we were very far off. 
 
+	- Evidence that RPM is the best predictive statistic, much better than Box Score numbers
+
+	- Why was 2013 so much less predictable? Showed up that way in all of our algorithms
+
+	-Talk about how Logistic outperformed Naive bayes in simulations. The projections were closer to 50%, which adds up in this as opposed to classification. 
+
 - REFERENCES
 	
 	- RAPM References
@@ -92,6 +106,5 @@ Figures over text
 	- NBA Oracle 
 
 	- Link to the Season long projections table we're comparing against. 
-
 
 	
