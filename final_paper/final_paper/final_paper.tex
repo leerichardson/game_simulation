@@ -171,15 +171,24 @@ Predicting the number of wins for each team preceding each season is a much more
 \section {Conclusion}
 
 %% General Theory for How to clasify. Why is predicting the outcomes of seasons harder?
+In the end, we feel as if there's a simple approach to choosing the best classifier. It's clear that two factors have the largest impact on each game: home court advantages and quality of each team. Imagine that there is some perfect measure of how good each team, and two teams are identical. In this situation, you should always pick the home team to win. The question then becomes, how much better does the away team have to be than the hope team in order to choose them to win? So the problem of classification can be simplified, and there's other basketball related predition problems that are much more difficult to attmept.
 
 %% Discuss why other systems bear us. (Projections, more developed, more nuances built in, etc...) Hollinger won, had been doing it the longers, mainly with PER
+One of the other prediction tasks we attempted was projecting how many games each team would win in a given season. In this task, there were more public predictions available to compare our results against, and we see that while our system was good, it did not approach some of the best publically available projection systems in the world. For instance, John Hollinger, someone recently hired by the Memphis Grizzlies, had the best projection system in 2012. He has been doing this for around 5 years, so for this reason, it makes sense his system would be more advanced. As we discuss below, there's many nuances that could be built into a projection system to make it more accurate, and only spending a semester on the project means there's not enough time to build in everything we hoped to include. 
+
 
 %% Why was 2013 so much less predictable than other years. Especially since we had the MOST training data. This gives some evidence to the theory that randomness may impact the results of these games more than a fancy classifier. sometimes the underdog will just win more. 
+One interesting thing that came out of our report was how much lower our prediction error was in the final season, 2013, compared with all others. This is counter to what one would expect in a typical machine learning situation, since we had the most amount of training data in 2013. However, we think the reason for this is that maybe there were just more upsets in 2013 than any of the other seasons. Most projection systems also showed much lower accuracy in 2013 compared with 2012. Theoretically, most classification systems will just choose the favorite to win, so if the season has more unexpected results than unusual, it shouldn't be difficult to imagine that the predictions would simply be worse. %% Salary cap? Player Movement?
+
 
 %% RAPM- Why did it do so much better? More information?? What does this say about SportsVU data's potential impact as a predictor?
+Another interesting result was how much superior the RAPM statistic was for predicting outcomes than anything else. We think the main reason for this is simply that it conveys more information than box score statistics, the other statistics usually available. RAPM uses possession level events to construct offensive and defensive ratings for each player, and all box score statistics can be computed with the same possession level data that calculates RAPM. What does this mean for the future of statistics in the NBA? We think it indicates that soon enough, statistics like RAPM might soon become less predictive, as even higher resultion camera data is now being collected by a company called sports VU \cite{sportsvu}. The data from these cameras tracks the location of each player 10 times each second, and is sure to produce some novel insights into the game of basketball. 
+
 
 %% Future developments: Using current season's data, Predicting the Spread, and building a projection of the RPM feature as opposed to just last year (more than one year, what to do with rookies? Etc..)
+Finally, we look at ways in which we could have improved our classifier. One of the main flaws in our system is that we only used individual player data from the previous season in order to predict the current season. This means that if a player misses the previous season due to injury (IE: Derick Rose, Rajon Rondo, etc...), then a significant aspect of a team may be underrated by our systems. A couple ways we could combat this is by using projected season statistics to predict the current season, as some of the most accurate RAPM based systems used in 2013. That way, we could account for things like player age, injury history, and expected regression from year to year. We could also consider not just the previous season, but a weighted average of the past 3-5 seasons to get an estimate for how good each played is.
 
+We also wanted to include current season data into our projections. To do this, we could divide each season into K different chunks, and use the teams winning percentage in all chunks of the season each game to predict the current game outcome. As seen in figure \ref{fig:simulations}, some of the estimates for how good we felt each team was before the season were much different from their win totals. Incorporating current season data into the predictions would allow us to save ourselves when these predictions start to get away from us, and update our valuation of how good each team is as we get more information on them throughout the season. 
 
 \begin{thebibliography}{1}
 
@@ -201,7 +210,12 @@ Predicting the number of wins for each team preceding each season is a much more
 
   \bibitem{projections} Weak Side Awareness Blog. http://weaksideawareness.wordpress.com/2013/04/23/checking-2012-13-nba-win-predictions-projections/
 
-  \bibitem{revolution} Sam Hinkie and the Analytics Revolution in Basketball. NILKANTH PATEL http://www.newyorker.com/news/sporting-scene/sam-hinkie-and-the-analytics-revolution-in-basketball
+  \bibitem{revolution} Sam Hinkie and the Analytics Revolution in Basketball. Nilkanth Patel. http://www.newyorker.com/news/sporting-scene/sam-hinkie-and-the-analytics-revolution-in-basketball
+
+  \bibitem{sportsvu} Zach Lowe. http://grantland.com/features/the-toronto-raptors-sportvu-cameras-nba-analytical-revolution/
+
   \end{thebibliography}
+	
+
 
 \end{document}
