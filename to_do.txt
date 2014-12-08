@@ -16,10 +16,6 @@
 
 - RAPM - Individual (scalar) player statistic.
 
-Putting the dataset online. Github? Other suggestions on how to do this? Need to make sure it's totally accurate
-
-RPI section- Talk about how we need to use it to give some signals about how good the team was last year (Which we don't have in our current dataset). Maybe we don't need tiers, and can use the pure metrix as a feature. 
-
 ----- FUTURE GOALS -------------
 
 - Scrape play by play data and calculate our own RAPM statistic
@@ -76,15 +72,7 @@ Figures over text
 
 	- Logit estimates are more conservative (How many over 60, under 20, etc...)
 
-- FUTURE DIRECIONS-
-	
-	- Using projections as in season features, accounting for more seasons in the past than just the most recent
-	
-	- Using current season data as a feature: IE: Split the season into K clusters and compute winning percentage in every clister up to the one being predicted (Could have saved Phoenix projection midway through)
-
 	- Display our RMSE and MAE errors 
-
-	- Display our season predictions, fic up the figure a little bit
 
 
 - CONCLUSION AND FUTURE DIRECIONS-
@@ -98,6 +86,10 @@ Figures over text
 	- Why was 2013 so much less predictable? Showed up that way in all of our algorithms
 
 	-Talk about how Logistic outperformed Naive bayes in simulations. The projections were closer to 50%, which adds up in this as opposed to classification. 
+
+	- Predicting the spread
+
+	- Get predictions for this year 
 
 - REFERENCES
 	
