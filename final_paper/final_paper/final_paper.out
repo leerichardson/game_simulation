@@ -7,6 +7,7 @@
 \BOOKMARK [2][-]{subsection.3.4}{Merging Sources into One Database}{section.3}% 7
 \BOOKMARK [1][-]{section.4}{Experiments}{}% 8
 \BOOKMARK [2][-]{subsection.4.1}{Training and test datasets}{section.4}% 9
-\BOOKMARK [2][-]{subsection.4.2}{Training the model and the test error}{section.4}% 10
-\BOOKMARK [1][-]{section.5}{Simulation}{}% 11
-\BOOKMARK [1][-]{section.6}{Conclusion}{}% 12
+\BOOKMARK [2][-]{subsection.4.2}{Test Error}{section.4}% 10
+\BOOKMARK [2][-]{subsection.4.3}{Feture Selection}{section.4}% 11
+\BOOKMARK [1][-]{section.5}{Simulation}{}% 12
+\BOOKMARK [1][-]{section.6}{Conclusion}{}% 13
