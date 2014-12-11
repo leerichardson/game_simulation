@@ -1,102 +1,27 @@
+-------- MEETINGS ---------------------
+
+- Jerry Friday (Noon)
+
 -------- GENERAL ---------------------
 
-- Get the updated 2014 RPM data (pureRAPM)
-
 - Teams that show up as NA (Seattle Sonics, Vancouver Grizzlies, New Jersey Nets, New Orleans Hornets, more to find)
-
-- Mention how good home does as a feature, show that we need to improve on the 60 % baseline (Could be a good plot for the poster)
 
 - Could test best (tell all) metrics on their predictive accuracy. 
 
 - Look into Brooklyn (0 wins?, maybe the year they moved)
 
-- Look into Rookie minutes
-
-------- MIDTERM REVIEW NOTES ----------------
-
-- RAPM - Individual (scalar) player statistic.
+- Look into Rookie Projections 
 
 ----- FUTURE GOALS -------------
 
 - Scrape play by play data and calculate our own RAPM statistic
 
-- Mention "All in One" Statistic predictive accuracy 
-
-- Mention home team wins 60 % of games, maybe get a table of JUST home teams 
-
 - How to simulate games without knowing the players who played beforehand (Using % games payed of previous season to choose players involved pregame)
 
 - How does the predictions do against the spread?
-
-- How to simulate games without knowing the players who played beforehand ???
-
-- Model each teams scores to be able to compare with the spreads 
-
 
 ----------- PROJECT RESULTS -------------------------------
 
 - Mention that we maxed out with the data we had at around there. maybe we need to use different information. (Specifically, maybe we need in season winning percentages along with data from more than JUST the previous seaason)
 
 - Why was 2013 so much less predictable than the other seasons?
-
----- POSTER ----------
-
-Figures over text
-
-- INTRODUCTION/GOALS
-
-	- Predict the outcomes of NBA games/seasons as accurately as possible
-
-	- Using out prediction algorithms, predict season win totals for the coming season using training data 
-
-
-- DATA- picture of database, explanation of the sources (CHI WILL DO THIS)
-
-- ALGORITHMS - Display winning pecentages of different years across all of our algorithms
-
-	- Mention type 1 errors
-
-	- Why did logitstic regression do the best
-
-
-- FEATURES - Note that the home team is our baseline percentage 
-
-	- RPI- Explain why we used it (Need information on the teams, not just players: IE: spurs) (Team culture, spurs, etc...)
-
-	- Feature selection (Which features were the best for prediciton? Which features weren't as useful)
-
-
-- SIMULATION comparison with other methods from this season. (CONFIDENCE BAND)
-
-	- Looks like the logit season simulations is predicting closer to the middle of the season, which makes the estimates better/more reasonable 
-
-	- Logit estimates are more conservative (How many over 60, under 20, etc...)
-
-	- Display our RMSE and MAE errors 
-
-
-- CONCLUSION AND FUTURE DIRECIONS-
-	
-	- Some systems (IE: BBStats) project the RAPM for the next year using aging, and most importantly more than one previous season. We only used the past season
-	
-	- We could imcorporate data from the current season, after splitting the season into chunks, to update are valuation of the teams. This was we can fix a team like Phoenix midway through the year if it turns out we were very far off. 
-
-	- Evidence that RPM is the best predictive statistic, much better than Box Score numbers
-
-	- Why was 2013 so much less predictable? Showed up that way in all of our algorithms
-
-	-Talk about how Logistic outperformed Naive bayes in simulations. The projections were closer to 50%, which adds up in this as opposed to classification. 
-
-	- Predicting the spread
-
-	- Get predictions for this year 
-
-- REFERENCES
-	
-	- RAPM References
-
-	- NBA Oracle 
-
-	- Link to the Season long projections table we're comparing against. 
-
-	

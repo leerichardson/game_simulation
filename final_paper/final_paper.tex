@@ -1,5 +1,4 @@
 \documentclass{article} % For LaTeX2e
-\usepackage{nips13submit_e,times}
 \usepackage{hyperref}
 \usepackage{url}
 \usepackage{times}
@@ -10,319 +9,235 @@
 \usepackage{indentfirst}
 \usepackage{graphicx}
 \usepackage[margin=1in]{geometry}
-%\documentstyle[nips13submit_09,times,art10]{article} % For LaTeX 2.09
-
+\usepackage{times}
+\usepackage{bbm}
+\usepackage{amsmath, amssymb,, epsfig}
+\newcommand*{\QEDA}{\hfill\ensuremath{\blacksquare}}
+\usepackage{sectsty}
+\usepackage{pdfpages}
+\usepackage{indentfirst}
+\usepackage{graphicx}
+\usepackage[margin=1in]{geometry}
 
 \title{NBA Predictions}
 
-\author{Lee Richardson (lrichard) \\ Daren Wang (darenw) \\ Chi Zhang (chiz2) \\ Xiaofeng Yu (xiaofen1)}  
+\author{Lee Richardson (lrichard) Daren Wang (darenw) \\ Chi Zhang (chiz2) Xiaofeng Yu (xiaofen1)}  
 
 \newcommand{\fix}{\marginpar{FIX}}
 \newcommand{\new}{\marginpar{NEW}}
 
-%\nipsfinalcopy % Uncomment for camera-ready version
-
 \begin{document}
 
 \maketitle
-	Hey
-\begin{abstract}
 
+\begin{abstract}
+Last year, the defending champion Miami Heat lost consecutive games against the lowly Detroit Pistons and Milwaukee Bucks. While this two game stretch was certainly unlikely, it exemplifies the inherent randomness present in NBA basketball games. In this paper, we examine how well we can predict the outcomes of individual games using various machine learning algorithms. Specifically, we see that we can accurately predict around 70\% of individual games, and that simple, interpretable classifiers such as Logistic Regression and Naive Bayes work the best. We then use these predictions to simulate full NBA seasons, which land us in the top 15 of all publicly available NBA projection systems \cite{projections}. Finally, we see that the recently developed Regularized Adjusted Plus Minus (RAPM) statistic is a better predictor than the more commonly used box score statistics. 
 \end{abstract}
 
-\section{Submission of papers to NIPS 2013}
+\section{Introduction}
+	In recent years, there has been lots of talk in NBA circles regarding the rise of statistical analysis\cite{revolution}. This has been in the works for years, starting with Dean Oliver's Basketball on Paper \cite{bop}, which was for a long time the cornerstone of basketball statistics. Recently, new data has become publicly available, most notably play by play data which provides a record of each event, when they happened, and which were on the floor when they happened. This is in contrast to the more commonly known Box Score statistics, which are useful, but have less information than play by play data. In fact, every box score statistic can be inferred from play by play data. Within the last few seasons, camera's were installed in every NBA arena \cite{sportsvu}, which track the location of the ball and each player 10 times per second. However, this camera data is proprietary, and it will be awhile before it's released and people are able to make sense of it. \\
 
-\subsection{Style}
+	In this paper, we harness all publicly available data sources to predict the outcomes of NBA basketball games. In section two, we will look at previous attempts at the problem and provide a more detailed description of RAPM. Next, we will describe how we compiled our database, and give information on how one could access it. In section four, we describe our efforts in predicting games using various algorithms, features, and model selection techniques. Then we discuss how we used our game predictions to simulate full seasons, and compare our results with other projection systems. We conclude with a discussion of what we learned and ways we can improve our predictions. 
 
-Papers to be submitted to NIPS 2013 must be prepared according to the
-instructions presented here. Papers may be only up to eight pages long,
-including figures. Since 2009 an additional ninth page \textit{containing only
-cited references} is allowed. Papers that exceed nine pages will not be
-reviewed, or in any other way considered for presentation at the conference.
-%This is a strict upper bound. 
+\section{Related Works}
+	%%% TALK ABOUT NBA ORACLE AND DATA MINING TO COMPARE PREDICTION ACCURACIES
+	We looked into the literature to see if anyone had worked on the same or similar problems. From this, we found a few papers, specifically \cite{nba_oracle} and \cite{data_mining}, which also attempted to predict the outcomes of NBA games. These papers used linear and logistic regression, naive Bayes, neural networks, and Support Vector Machine's as their classifiers, and used mainly box score statistics as features. They also used the same loss function (zero one loss) that we are proposing, which gave us a target test error to shoot for when implementing our algorithms. Specifically, \cite{nba_oracle} achieved the highest single season classification rate of 73\% in the 1996 season using linear regression. All of the other season/algorithms combinations had error rates from the mid 60's to low 70's. \\
 
-Please note that this year we have introduced automatic line number generation
-into the style file (for \LaTeXe and Word versions). This is to help reviewers
-refer to specific lines of the paper when they make their comments. Please do
-NOT refer to these line numbers in your paper as they will be removed from the
-style file for the final version of accepted papers.
+	%%% DELVE INTO THE RAPM PAPER TO EXPLAIN WHY IT'S SO GOOD
+	One advantage we believe we have compared with these groups is that we have a more robust feature set, most notably, we have RAPM. RAPM has been anointed by many as the next big thing \cite{bigrpm} in the basketball statistics community, and we hope that using it as a feature will help differentiate our attempts at game classification. Taylor et al. have a great explanation of the statistic \cite{rpm}, but the basic idea is to split each game into miniature games, each one occurring in time periods when there's no substitutions. The final dataset consists of the score margin of each miniature game, and indicator variables for each player involved (+1 for offense, -1 for defense). Then a regression is ran (people are now using ridge regression, which is why the R in RAPM stands for Regularization), and the coefficients represent each players individual contribution per 100 possessions on offense and defense. RAPM adjusts for flaws in original plus minus, by correcting for the fact that player totals are heavily influenced by the play of his opponents and teammates, and by pooling information from previous seasons to reduce the margin of error. 
 
-The margins in 2013 are the same as since 2007, which allow for $\approx 15\%$
-more words in the paper compared to earlier years. We are also again using 
-double-blind reviewing. Both of these require the use of new style files.
+\section{Dataset}
 
-Authors are required to use the NIPS \LaTeX{} style files obtainable at the
-NIPS website as indicated below. Please make sure you use the current files and
-not previous versions. Tweaking the style files may be grounds for rejection.
+\subsection{Challenges for dataset preparation}
+We encountered several challenges in the dataset preparation phase.
 
-\subsection{Retrieval of style files}
+\begin{itemize}
+\item There are currently no ready-made data sources for our experiments. What we can find is several websites on NBA games. Since we are interested in statistics of thousands of games with hundreds of players, it's not realistic to acquire those data manually from websites.
+\item Data sources from different websites have to be merged using a uniformed format. Different websites may treat player names and season labels differently. For example Roger Mason Jr. and Roger Mason are in fact same person from different websites, while uta and utah are different abbreviations for the Utah Jazz.
+\item Data needs to be stored in a proper manner so that our future experiments can be implemented based on a uniformed and easily accessible API.
+\end{itemize}
 
-The style files for NIPS and other conference information are available on the World Wide Web at
-\begin{center}
-   \url{http://www.nips.cc/}
-\end{center}
-The file \verb+nips2013.pdf+ contains these 
-instructions and illustrates the
-various formatting requirements your NIPS paper must satisfy. \LaTeX{}
-users can choose between two style files:
-\verb+nips11submit_09.sty+ (to be used with \LaTeX{} version 2.09) and
-\verb+nips11submit_e.sty+ (to be used with \LaTeX{}2e). The file
-\verb+nips2013.tex+ may be used as a ``shell'' for writing your paper. All you
-have to do is replace the author, title, abstract, and text of the paper with
-your own. The file
-\verb+nips2013.rtf+ is provided as a shell for MS Word users.
+To meet those challenges, we are writing our own web crawlers to get data from websites, then made lots efforts on ETL on ensure different data sources were properly combined. Finally we stored all data into a SQLite database.
+It's worth mentioning that we are making our dataset public online at \\
+\url{https://github.com/leerichardson/game_simulation/blob/master/nba_rRegression_chi/nba.db}\\
+Hopefully this will save some effort for anyone interested in research on NBA statistics in the coming years. \\
 
-\section{General formatting instructions}
-\label{gen_inst}
-
-\section{Headings: first level}
-\label{headings}
-
-First level headings are lower case (except for first word and proper nouns),
-flush left, bold and in point size 12. One line space before the first level
-heading and 1/2~line space after the first level heading.
-
-\subsection{Headings: second level}
-
-Second level headings are lower case (except for first word and proper nouns),
-flush left, bold and in point size 10. One line space before the second level
-heading and 1/2~line space after the second level heading.
-
-\subsubsection{Headings: third level}
-
-Third level headings are lower case (except for first word and proper nouns),
-flush left, bold and in point size 10. One line space before the third level
-heading and 1/2~line space after the third level heading.
-
-\section{Citations, figures, tables, references}
-\label{others}
-
-These instructions apply to everyone, regardless of the formatter being used.
-
-\subsection{Citations within the text}
-
-Citations within the text should be numbered consecutively. The corresponding
-number is to appear enclosed in square brackets, such as [1] or [2]-[5]. The
-corresponding references are to be listed in the same order at the end of the
-paper, in the \textbf{References} section. (Note: the standard
-\textsc{Bib\TeX} style \texttt{unsrt} produces this.) As to the format of the
-references themselves, any style is acceptable as long as it is used
-consistently.
-
-As submission is double blind, refer to your own published work in the 
-third person. That is, use ``In the previous work of Jones et al.\ [4]'',
-not ``In our previous work [4]''. If you cite your other papers that
-are not widely available (e.g.\ a journal paper under review), use
-anonymous author names in the citation, e.g.\ an author of the
-form ``A.\ Anonymous''. 
-
-
-\subsection{Footnotes}
-
-Indicate footnotes with a number\footnote{Sample of the first footnote} in the
-text. Place the footnotes at the bottom of the page on which they appear.
-Precede the footnote with a horizontal rule of 2~inches
-(12~picas).\footnote{Sample of the second footnote}
-
-\subsection{Figures}
-
-All artwork must be neat, clean, and legible. Lines should be dark
-enough for purposes of reproduction; art work should not be
-hand-drawn. The figure number and caption always appear after the
-figure. Place one line space before the figure caption, and one line
-space after the figure. The figure caption is lower case (except for
-first word and proper nouns); figures are numbered consecutively.
-
-Make sure the figure caption does not get separated from the figure.
-Leave sufficient space to avoid splitting the figure and figure caption.
-
-You may use color figures. 
-However, it is best for the
-figure captions and the paper body to make sense if the paper is printed
-either in black/white or in color.
-\begin{figure}[h]
-\begin{center}
-%\framebox[4.0in]{$\;$}
-\fbox{\rule[-.5cm]{0cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
-\end{center}
-\caption{Sample figure caption.}
+\begin{figure}
+		\centering
+		\includegraphics[width=150mm, height=120mm]{sqliteERDiagram.png}	
+		\caption{Entity - Relationship graph for SQLite database. The database follows the third normal form to ensure there is no redundancy. Two main data sources of the dataset are ESPN and Basketball References websites. Lines between tables indicate the primary key - foreign key relationship between dataset entities.}
+		\label{fig:database}
 \end{figure}
 
-\subsection{Tables}
+\subsection{Data Sources}
+	We did not have a processed dataset for this project, so we created our own database. The three main sources we used were ESPN's NBA website \cite{espn}, basketball reference \cite{bball_ref}, and a new website from Jeremias Engleman \cite{rpm_data}. We used the ESPN data to get information about all NBA games from 2009-2014. This includes the game score, the home and away teams, the players involved and their individual statistics. Also from ESPN, we have a player database, which has 50 individual statistics for each player in each season. There are 7139 games in this dataset. \\
 
-All tables must be centered, neat, clean and legible. Do not use hand-drawn
-tables. The table number and title always appear before the table. See
-Table~\ref{sample-table}.
+	The next data source we used was basketball reference \cite{bball_ref}. The main reason we used this site is because they have a larger individual player database, with information dating back to the 1950's and more advanced statistics, such as the widely used Player Efficiency Rating (PER), compared with just box score statistics provided by ESPN. \\
 
-Place one line space before the table title, one line space after the table
-title, and one line space after the table. The table title must be lower case
-(except for first word and proper nouns); tables are numbered consecutively.
+	The final source we used was from a website put together by Jeremias Engleman \cite{rpm_data}. This site has RAPM statistics described above, dating back to the 1980's. This statistic has been widely adopted in the NBA statistics community, and it's one of the few trustworthy stats which provides an individual assessment of defense. As we see below, RAPM is a very useful feature in predicting game outcomes. \\
 
-\begin{table}[t]
-\caption{Sample table title}
-\label{sample-table}
-\begin{center}
-\begin{tabular}{ll}
-\multicolumn{1}{c}{\bf PART}  &\multicolumn{1}{c}{\bf DESCRIPTION}
-\\ \hline \\
-Dendrite         &Input terminal \\
-Axon             &Output terminal \\
-Soma             &Cell body (contains cell nucleus) \\
-\end{tabular}
-\end{center}
-\end{table}
+	%%% WEB CRAWLERS
+\subsection{Web Crawlers}
+	To obtain all of these datasets, we used web-crawlers to pull them off their websites. All of these scripts can be found in our Github repository \cite{gitrepo}. For the ESPN data, we used the BeautifulSoup package in the Python language. For the other two datasets, we used the XML package in R. \\
 
-\section{Final instructions}
-Do not change any aspects of the formatting parameters in the style files.
-In particular, do not modify the width or length of the rectangle the text
-should fit into, and do not change font sizes (except perhaps in the
-\textbf{References} section; see below). Please note that pages should be
-numbered.
+	%%% TALK ABOUT MERGING SOURCES 
+	\subsection{Merging Sources into One Database}
+	One of the major obstacles in our project has been combining these three data sources into one single database. The ESPN dataset had both match and playerID's for each game, so merging the game statistics with the ESPN player database wasn't very difficult. However, the basketball reference and RAPM dataset didn't have these identifiers, so it was more challenging to put them together. We ended up using the player's name, team, and season to join both of these datasets together with ESPN. Some common problems we had were inconsistent spelling of names in different datasets, inconsistent team names, teams have changed cities, etc.. In the end, we were able to sync most of the idiosyncrasies between the three datasets, which is important because it gives more interesting features than just box score statistics. That being said, we don't doubt that there's still be further cleaning to be done, as it's hard to catch all of the idiosyncrasies in these three separate datasets. \\
 
-\section{Preparing PostScript or PDF files}
+\section{Experiments}
+	%%% TWOFEATURE MATRICES/.. LARGE AND JUST RAPM/PER
+	\subsection{Training and test datasets}
+	We devoted a substantial amount of time to construct features that can be used to train the model. The features are constructed using of both the RAPM dataset and the ESPN data (recall that the ESPN data provide basic statistics such as the average number of points per game or the average number of rebounds per game for a given season). To create the features, we considered each match and listed the players on each team, then we merged the players' statistics from the previous season with the results in the matches of the current season. We then add up  the players' statistics to form statistics for home teams and away teams. In the computation of the offensive and defensive RAPM statistics of each team, the players' average minutes per game from the previous season were used as weights. To illustrate, suppose that there are $n$ players in each team, with the $i$-th player  playing $m_i$ minutes per game and having RAPM score $r_i$ in the previous season. Then, the weight for the $i$-th player and the team offensive RAPM are determined as:
 
-Please prepare PostScript or PDF files with paper size ``US Letter'', and
-not, for example, ``A4''. The -t
-letter option on dvips will produce US Letter files.
+	\begin{align*}
+		w_i &= \frac{m_i}{\frac{1}{n}\sum_{i=1}^{n} m_i} \\
+		\text{Team Offensive RAPM} &= \frac{1}{n}\sum_{i=1}^{n} w_i \times r_i.
+	\end{align*}
 
-Fonts were the main cause of problems in the past years. Your PDF file must
-only contain Type 1 or Embedded TrueType fonts. Here are a few instructions
-to achieve this.
-
-\begin{itemize}
-
-\item You can check which fonts a PDF files uses.  In Acrobat Reader,
-select the menu Files$>$Document Properties$>$Fonts and select Show All Fonts. You can
-also use the program \verb+pdffonts+ which comes with \verb+xpdf+ and is
-available out-of-the-box on most Linux machines.
-
-\item The IEEE has recommendations for generating PDF files whose fonts
-are also acceptable for NIPS. Please see
-\url{http://www.emfield.org/icuwb2010/downloads/IEEE-PDF-SpecV32.pdf}
-
-\item LaTeX users:
-
-\begin{itemize}
-
-\item Consider directly generating PDF files using \verb+pdflatex+
-(especially if you are a MiKTeX user). 
-PDF figures must be substituted for EPS figures, however.
-
-\item Otherwise, please generate your PostScript and PDF files with the following commands:
-\begin{verbatim} 
-dvips mypaper.dvi -t letter -Ppdf -G0 -o mypaper.ps
-ps2pdf mypaper.ps mypaper.pdf
-\end{verbatim}
-
-Check that the PDF files only contains Type 1 fonts. 
-%For the final version, please send us both the Postscript file and
-%the PDF file. 
-
-\item xfig "patterned" shapes are implemented with 
-bitmap fonts.  Use "solid" shapes instead. 
-\item The \verb+\bbold+ package almost always uses bitmap
-fonts.  You can try the equivalent AMS Fonts with command
-\begin{verbatim}
-\usepackage[psamsfonts]{amssymb}
-\end{verbatim}
- or use the following workaround for reals, natural and complex: 
-\begin{verbatim}
-\newcommand{\RR}{I\!\!R} %real numbers
-\newcommand{\Nat}{I\!\!N} %natural numbers 
-\newcommand{\CC}{I\!\!\!\!C} %complex numbers
-\end{verbatim}
-
-\item Sometimes the problematic fonts are used in figures
-included in LaTeX files. The ghostscript program \verb+eps2eps+ is the simplest
-way to clean such figures. For black and white figures, slightly better
-results can be achieved with program \verb+potrace+.
-\end{itemize}
-\item MSWord and Windows users (via PDF file):
-\begin{itemize}
-\item Install the Microsoft Save as PDF Office 2007 Add-in from
-\url{http://www.microsoft.com/downloads/details.aspx?displaylang=en\&familyid=4d951911-3e7e-4ae6-b059-a2e79ed87041}
-\item Select ``Save or Publish to PDF'' from the Office or File menu
-\end{itemize}
-\item MSWord and Mac OS X users (via PDF file):
-\begin{itemize}
-\item From the print menu, click the PDF drop-down box, and select ``Save
-as PDF...''
-\end{itemize}
-\item MSWord and Windows users (via PS file):
-\begin{itemize}
-\item To create a new printer
-on your computer, install the AdobePS printer driver and the Adobe Distiller PPD file from
-\url{http://www.adobe.com/support/downloads/detail.jsp?ftpID=204} {\it Note:} You must reboot your PC after installing the
-AdobePS driver for it to take effect.
-\item To produce the ps file, select ``Print'' from the MS app, choose
-the installed AdobePS printer, click on ``Properties'', click on ``Advanced.''
-\item Set ``TrueType Font'' to be ``Download as Softfont''
-\item Open the ``PostScript Options'' folder
-\item Select ``PostScript Output Option'' to be ``Optimize for Portability''
-\item Select ``TrueType Font Download Option'' to be ``Outline''
-\item Select ``Send PostScript Error Handler'' to be ``No''
-\item Click ``OK'' three times, print your file.
-\item Now, use Adobe Acrobat Distiller or ps2pdf to create a PDF file from
-the PS file. In Acrobat, check the option ``Embed all fonts'' if
-applicable.
-\end{itemize}
-
-\end{itemize}
-If your file contains Type 3 fonts or non embedded TrueType fonts, we will
-ask you to fix it. 
-
-\subsection{Margins in LaTeX}
- 
-Most of the margin problems come from figures positioned by hand using
-\verb+\special+ or other commands. We suggest using the command
-\verb+\includegraphics+
-from the graphicx package. Always specify the figure width as a multiple of
-the line width as in the example below using .eps graphics
-\begin{verbatim}
-   \usepackage[dvips]{graphicx} ... 
-   \includegraphics[width=0.8\linewidth]{myfile.eps} 
-\end{verbatim}
-or % Apr 2009 addition
-\begin{verbatim}
-   \usepackage[pdftex]{graphicx} ... 
-   \includegraphics[width=0.8\linewidth]{myfile.pdf} 
-\end{verbatim}
-for .pdf graphics. 
-See section 4.4 in the graphics bundle documentation (\url{http://www.ctan.org/tex-archive/macros/latex/required/graphics/grfguide.ps}) 
- 
-A number of width problems arise when LaTeX cannot properly hyphenate a
-line. Please give LaTeX hyphenation hints using the \verb+\-+ command.
+	%%% TABLE OF EXAMPLE MATRIX %%%
+	\begin{table}[ht]
+	\centering
+	\begin{tabular}{rrrrrr}
+	  \hline
+		ORPM\_home & DRPM\_home & ORPM\_away & DRPM\_away & homeWin \\ 
+	  \hline
+		-0.28 & 0.89 & 0.65 & 0.18 & 1 \\ 
+	  	-0.28 & 0.89 & 1.15 & 1.05 & 1 \\ 
+	  	-0.29 & 0.99 & -1.44 & 0.12 & 1 \\ 
+	  	 0.03 & -0.66 & 0.04 & 1.09 & 1 \\ 
+	  	 0.28 & 1.26 & -0.81 & -0.20 & 0 \\ 
+	  	-0.75 & -0.46 & 0.51 & 1.02 & 1 \\ 
+	   \hline
+	\end{tabular}
+	\caption{A look at what our training and test datasets look like. The first four columns are features and the 5th column (indicating whether or not the home team won the game) is our label.}
+	\label{table:matrix}
+	\end{table}
+Before training the model, we tried to understand how the features that we constructed related to the game results.
+In Figure \ref{feats}, the left plot has the home team RAPM on the $x$ axis and the away team RAPM on the $y$ axis. The plot suggests that the game results are not linearly separable using RAPM. However, the green dots (corresponding to the losses for the home team) are close to a Gaussian distribution centered above the diagonal line of the plot, while the red dots are centered below the diagonal line. If one takes the diagonal line as the decision boundary, the majority of the data points are correctly classified. The right plot displays the teams' RAPM in wins compared with the teams' RAPM in losses. The horizontal line at the middle of each box corresponds to the sample mean. The top and bottom ends of the boxes are the empirical first and third quartiles, respectively. From the plot, one observes that RAPM is higher in wins than losses, suggesting that RAPM is a relevant feature.
 
 
-\subsubsection*{Acknowledgments}
+\begin{figure}[h]
+	\centerline{\epsfig{file=features.pdf, width=7in,height=3.25in}}
+	\caption{Left: visit team RAPM against home team RAPM; the green dots indicate visit team wins while the red dots indicate home team wins. Right: box plot of RAPM; the $y$ axis represents the difference in RAPM between the home team and the visit team.}
+	\label{feats}
+	\end{figure} 
+	
+	
+	\subsection{Algorithms and feature selection}
+	 We tried different models based on the features that we constructed to predict the game results. For each model, we split our dataset into a training set and a test set. 
+	 We trained our model using available data from the previous season and we used the model to predict the game results of the particular years in which we are interested. For example, to predict the game results for the 2010 season, we trained the model using data from seasons 2008 and 2009. %Chi's plot pleas
+	
+	\begin{figure}[h]
+	\centerline{\epsfig{file=linear2.PNG, width=6in,height=4in}}
+	\caption{Test accuracy of each algorithm }
+	\label{diffmodel}
+	\end{figure} 
+	
+	
+	\subsection{A discussion of the algorithms}
+	To predict the game results, we used algorithms such as linear regression, logistic regression, naive Bayes, SVM, and decision trees.
+	\begin{enumerate}
+	\item \textbf{Linear Regression.}
+          In order to fit the linear regression model, the game results are denoted as 0 and 1 (with 1's denoting home team wins). The fitted model is described in terms of a vector  of estimated coefficients (one for each feature) which we denote $\hat \beta$. To predict new games results using this model, one evaluates $\hat \beta^{T} X_{\text{test}}$, where $X_{\text{test}}$ corresponds to the vector of features for the new games. We predict that the home team wins if $\hat \beta^{T} X_{\text{test}} \ge 0.5$, and that the home team loses otherwise.
+	\item \textbf{Logistic regression.} Logistic regression is particularly useful when the outcome is binary. As before, we use 0 and 1 to denote wins and losses, and we predict that the home team wins a new game if the predicted value for that game is greater than or equal to $0.5$. Predicted values from a logistic regression are estimates of the probability that the home team wins. Thus, predictions from the logistic regression model are easily interpretable.
+	\item \textbf{Naive Bayes.} The naive Bayes classifier is a simple probabilistic classifier that selects the hypothesis that maximizes a posterior probability. The underlining assumption for naive Bayes classifier is that all the features are independent. Although in our case the features are not independent, the naive Bayes classifier performs relatively well compared with the other models. 
+	\item \textbf{SVM.}  A Support Vector Machine is a non-probabilistic classifier. We tried different kernels, and Figure \ref{diffmodel} displays the highest model accuracy achieved by the SVM among the kernels that we considered. Note that even though different kernels generate different decision boundaries, none allows to exactly classify all of the data points. For this reason, we use soft margin to train the model.
+	\item \textbf{Decision tree.} A decision tree is useful when one needs a good way to split a dataset with many features. In our case, there are 44 features overall. In order to avoid overfitting, we choose the subtree that minimized the regularized training error, defined as the sum of the training error and $\lambda |T|$. Here, $|T|$ denotes the size	of the tree while $\lambda$ is a penalty parameter which is selected using cross-validation.
+	\end{enumerate}
 
-Use unnumbered third level headings for the acknowledgments. All
-acknowledgments go at the end of the paper. Do not include 
-acknowledgments in the anonymized submission, only in the 
-final paper. 
+		Figure \ref{diffmodel} displays the test error of different algorithm. The linear model appears to have the best accuracy.  Note that, on the basis of the discussion above, the linear decision boundary were expected to perform well. The test accuracy plot confirms with this conclusion.\\
+	
 
-\subsubsection*{References}
+	
+	
+	
+	
+	\subsection{Feature selection}
+	In this section we discuss feature selection. There are 44 features for each model. Feature selection can  prevent overfitting and thus improve prediction accuracy. We discuss feature selection for the linear regression model. For the  linear regression model, we perform feature selection by using lasso regularization and a stepwise AIC procedure. In the lasso regression, the effective degrees of freedom $\lambda$ are chosen to minimize the generalized cross validation error.  In the stepwise AIC procedure, we set the minimum model to be the model including only the intercept term and the maximum model to be the model including all of the 44 features. At each step of the stepwise AIC procedure, a feature is included or dropped from the current model in such a way to give the highest decrease in the AIC score until no further changes in the AIC score occur.  
+			\\
+			\begin{table}[ht]
+	\centering
+	\begin{tabular}{rrrrrr}
+	  \hline
+		 & Full model (linear) & & Lasso & & AIC \\ 
+	  \hline
+		2009 & 0.6544715 && 0.6658537 && 0.6617886  \\ 
+	  	2010 &0.6739837  &&0.6853659 &&0.6788618    \\ 
+	  	2011 & 0.6676768 & &  0.6626263 &&  0.6717172  \\ 
+	  	2012 &0.6786005& & 0.6712775 && 0.6818552  \\ 
+	  	2013 & 0.6601626 && 0.6634146 && 0.6601626  \\ 
 
-References follow the acknowledgments. Use unnumbered third level heading for
-the references. Any choice of citation style is acceptable as long as you are
-consistent. It is permissible to reduce the font size to `small' (9-point) 
-when listing the references. {\bf Remember that this year you can use
-a ninth page as long as it contains \emph{only} cited references.}
+	   \hline
+	\end{tabular}
+	\caption{A look at how feature selection improves the prediction accuracy.}
+	\label{table:matrix}
+	\label{featsel}
+	\end{table}
+	\\
+	According to Table \ref{featsel}, stepwise AIC found a model with higher accuracy. The absolute difference in accuracy between the original model model and the selected model are not significant. However, the best prediction accuracy known is up to 70$\%$, while if one always predicts home team win, the accuracy is around 60$\%$. The improvement is not negligible.
+\\ \\	We also note that both the lasso and the stepwise AIC procedure identify the overall team weighted RAPM as the most important predictive feature. This is confirmed by the fact that the stepwise AIC procedure starting with the null model selects home and away RAPM as the first two features that should be included in the model. Moreover, the coefficient of the  Weighted RAPM didn't shrink to 0 after the lasso and this is another indication that these feature is more relevant than the others.	
+\section{Simulation}	
 
-\small{
-[1] Alexander, J.A. \& Mozer, M.C. (1995) Template-based algorithms
-for connectionist rule extraction. In G. Tesauro, D. S. Touretzky
-and T.K. Leen (eds.), {\it Advances in Neural Information Processing
-Systems 7}, pp. 609-616. Cambridge, MA: MIT Press.
+\begin{figure}
+  \centering
+  \includegraphics[height=15cm, width=15cm]{season_wins.png}
+  \caption{Distribution of wins for each team from simulating the 2013 NBA season 1000 times, using probabilities from our best Logistic regression model. The blue lines represent our confidence intervals whereas the Red lines represent the actual number of wins for each team. Our simulations trapped the true number of wins in 70 \% of our intervals.}
+  \label{fig:simulations}
+\end{figure}
 
-[2] Bower, J.M. \& Beeman, D. (1995) {\it The Book of GENESIS: Exploring
-Realistic Neural Models with the GEneral NEural SImulation System.}
-New York: TELOS/Springer-Verlag.
+In order for the various classifier's to predict which team would win each game, they generate probabilities for each team (class), and predict the maximum. Another natural way to utilize these probabilities is to use them to simulation the entire season. Specifically, by generating Uniform(0,1) random variables, we were able to stochastically determine the outcome of each game, and simulation each game in a season. Then we simulated the season 1000 times to obtain the distribution of predicted win totals for each team. Figure \ref{fig:simulations} shows the win distributions for each team, using logistic regression for the 2013-14 season. Out of the two best classifiers (Naive Bayes and Logistic Regression), logistic regression performed much better in these simulations, using both the Root Mean Squared Error (RMSE) and Median Absolute Deviation (MAE) loss functions. This is because the game probabilities generated by Naive Bayes were much more extreme than logistic regression. While this doesn't effect classification as much since we're only selection the maximum, the exact probabilities matter in a more complicated function such as the result of simulating a complete season. To see how sensitive the simulated seasons are to these probabilities, consider the standard deviations of the number of predicted wins for each team using Naive Bayes and Logistic Regression. For Naive Bayes, they were 16.12 and 17.07, compared with 9.66 and 9.68 for logistic regression. This shows that the win totals predicted by Naive Bayes were much more extreme than logistic regression. \\
 
-[3] Hasselmo, M.E., Schnell, E. \& Barkai, E. (1995) Dynamics of learning
-and recall at excitatory recurrent synapses and cholinergic modulation
-in rat hippocampal region CA3. {\it Journal of Neuroscience}
-{\bf 15}(7):5249-5262.
-}
+Forecasting how many wins each time will get during a seasons turns out to be a much more popular task than computing test errors, so we were able to compare our projections to lots of other systems using our RMSE loss function (which is commonly used by in the basketball analytics community \cite{projections}). Our RMSE for 2012 was 7.54 and 9.7278 in 2013. This would be in the top 20 for the past two seasons. Had we used Naive Bayes as opposed to Logistic regression, our system would have consistently performed in the bottom five. 
+
+
+\section {Conclusion}
+%% General Theory for How to clasify. Why is predicting the outcomes of seasons harder?
+In the end, it seems that sticking with a simple classification algorithm yields the best accuracy in forecasting NBA games. It's clear that the two factors have the largest impact on each game are home court advantage and the quality of each team. Imagine that there's some perfect measure of the quality of each team, and that two teams are identical. In this situation, you should always pick the home team to win. The question then becomes, how much better does the away team have to be than the home team in order to choose them to win? Figuring out where to draw this line seems like the way to get the best performance out of classification algorithms. Obviously, since there's no way to know the exact quality of each team, this will be an estimate and is not an exact science. \\
+
+%% Discuss why other systems bear us. (Projections, more developed, more nuances built in, etc...) Hollinger won, had been doing it the longers, mainly with PER
+In terms of simulating seasons, it seems that more conservative estimates, such as those yielded by logistic regression, work better than more extreme predictions. For this endeavor, there were more public predictions available to compare our results with, and we see that while our system performs well, it did not approach some of the best publicly available systems. For instance, John Hollinger, who was recently hired by the Memphis Grizzlies, had the best projection system in 2012. He has been doing this for around 5 years, and written various books on the subject, so it makes sense his system would have better performance than ours, just based on experience. As we discuss below, there's many nuances that could be built into a projection system to make it more accurate, and since we only spent a semester on this project, there wasn't enough time to incorporate everything we hoped to include. \\
+
+
+%% Why was 2013 so much less predictable than other years. Especially since we had the MOST training data. This gives some evidence to the theory that randomness may impact the results of these games more than a fancy classifier. sometimes the underdog will just win more. 
+One interesting finding that came out of our report was how much lower our test error was in the final season, 2013. This is counter to what one would expect in a typical machine learning situation, since we had the most amount of training data for this season. However, we think the reason for this is that there was just more variability in the 2013 compared to other seasons. This shows that no matter what algorithm/features you use, upsets happen in the NBA, and some seasons have more unexpected results than others. Other systems also showed much lower accuracy in 2013 compared with 2012 \cite{projections}. \\ %% Salary cap? Player Movement?
+
+
+%% RAPM- Why did it do so much better? More information?? What does this say about SportsVU data's potential impact as a predictor?
+Another interesting result was how much predictive the RAPM statistic was than box score statistics. We think the main reason for this is simply that it simply contains more information. RAPM uses possession level events to construct offensive and defensive ratings for each player, and all box score statistics can be computed with the same possession level data that calculates RAPM. What does this mean for the future of statistics in the NBA? We think it indicates that soon enough, statistics like RAPM might soon become less state of the art, as even higher resultion camera data is now being collected by a company called STATS LLC \cite{sportsvu}. The data from these cameras tracks the location of each player 10 times each second, and is sure to produce some novel insights into the game of basketball. \\
+
+%% Future developments: Using current season's data, Predicting the Spread, and building a projection of the RAPM feature as opposed to just last year (more than one year, what to do with rookies? Etc..)
+There are many ways to improve upon the results displayed in this paper. One of the main flaws in our system is that we only used individual player data from the previous season in order to predict the current season. This means that if a player misses the previous season due to injury (IE: Derick Rose, Rajon Rondo, etc...), then a significant aspect of a team may be underrated by our systems. We are also treating rookies as league average players, which is a very favorable assumption. A couple ways we could combat this is by using projected season statistics as features to predict the current season. Some of the most accurate RAPM based systems used in 2013 used this strategy \cite{projections}. That way, we could account for things like player age, injury history, and expected changes due to team composition. We could also consider not just the previous season, but a weighted average of the past 3-5 seasons to get an estimate for the quality of each player. \\
+
+We also wanted to include data from the current season into our projections. To do this, we could divide each season into K different chunks, and use the teams winning percentage in all chunks of the season before each game to predict game outcomes. As seen in figure \ref{fig:simulations}, some of the estimates which represented how good we thought each team was before the season were very off. Incorporating current season data into the predictions would allow us to save ourselves when it becomes clear a team is much better than expected. We can update our valuation of how good each team is as we get more information on them throughout the season. 
+
+\begin{thebibliography}{1}
+
+  \bibitem{nba_oracle} Matthew Beckler, Hongfei Wang, Michael Papamichael {\em NBA Oracle} 2009.
+
+  \bibitem{data_mining} Dragan Miljkovic, Ljubiša Gajic, Aleksandar Kovacevic, Zora Konjovic {\em The Use of Data Mining for Basketball Matches Outcomes Prediction} 2010: SISY 2010
+
+  \bibitem{rpm} Paul Fearnhead, Benjamin M. Taylor {\em On Estimating the Ability of NBA Players}. 2010: http://arxiv.org/pdf/1008.0705.pdf.
+
+  \bibitem{bigrpm} Steve Illardi. {\em The next big thing: real plus minus}. 2014. ESPN.com
+
+  \bibitem{rpm_data} Jeremias Engleman. http://stats-for-the-nba.appspot.com/
+
+  \bibitem{bball_ref} Basketball Reference. http://www.basketball-reference.com/
+
+  \bibitem{espn} ESPN. http://espn.go.com/nba/.
+
+  \bibitem{gitrepo} Repository for Game Simulation. https://github.com/leerichardson/game\_simulation.
+
+  \bibitem{projections} Weak Side Awareness Blog. http://weaksideawareness.wordpress.com/2013/04/23/checking-2012-13-nba-win-predictions-projections/
+
+  \bibitem{revolution} Sam Hinkie and the Analytics Revolution in Basketball. Nilkanth Patel. http://www.newyorker.com/news/sporting-scene/sam-hinkie-and-the-analytics-revolution-in-basketball
+
+  \bibitem{sportsvu} Zach Lowe. http://grantland.com/features/the-toronto-raptors-sportvu-cameras-nba-analytical-revolution/
+
+  \bibitem{bop} Basketball on Paper: Rules and Tools for Performance Analysis. Dean Oliver
+
+  \end{thebibliography}
+	
+
 
 \end{document}
