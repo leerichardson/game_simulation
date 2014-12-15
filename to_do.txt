@@ -2,6 +2,8 @@
 
 - Jerry Friday (Noon)
 
+
+
 -------- GENERAL ---------------------
 
 - Teams that show up as NA (Seattle Sonics, Vancouver Grizzlies, New Jersey Nets, New Orleans Hornets, more to find)
@@ -12,16 +14,17 @@
 
 - Look into Rookie Projections 
 
+
+
 ----- FUTURE GOALS -------------
 
 - Scrape play by play data and calculate our own RAPM statistic
 
 - How to simulate games without knowing the players who played beforehand (Using % games payed of previous season to choose players involved pregame)
 
-- How does the predictions do against the spread?
+- How does the predictions do against the spread? (Predictiing against the spread)
 
------------ PROJECT RESULTS -------------------------------
+- Clustering players based on a set of features- features are rates. \
 
-- Mention that we maxed out with the data we had at around there. maybe we need to use different information. (Specifically, maybe we need in season winning percentages along with data from more than JUST the previous seaason)
 
-- Why was 2013 so much less predictable than the other seasons?
+- STEPS set up mongo on the computer. 
