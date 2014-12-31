@@ -1,22 +1,22 @@
 -------- MEETINGS ---------------------
 
-- Jerry Friday (Noon)
+-  None
 
 
+-------- TO LOOK INTO ---------------------
 
--------- GENERAL ---------------------
 
 - Teams that show up as NA (Seattle Sonics, Vancouver Grizzlies, New Jersey Nets, New Orleans Hornets, more to find)
 
-- Could test best (tell all) metrics on their predictive accuracy. 
-
-- Look into Brooklyn (0 wins?, maybe the year they moved)
-
-- Look into Rookie Projections 
-
+- Look into Brooklyn (0 wins with Naive Bayes Season??, maybe the year they moved)
 
 
 ----- FUTURE GOALS -------------
+
+
+- Could test best (tell all) metrics on their predictive accuracy. 
+
+- Look into Rookie Projections 
 
 - Scrape play by play data and calculate our own RAPM statistic
 
@@ -24,7 +24,6 @@
 
 - How does the predictions do against the spread? (Predictiing against the spread)
 
-- Clustering players based on a set of features- features are rates. \
+- Clustering players based on a set of features- features are rates. 
 
-
-- STEPS set up mongo on the computer. 
+- Create Shiny app with the time series 
