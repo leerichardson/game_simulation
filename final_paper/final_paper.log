@@ -1,7 +1,10 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.8.20)  11 DEC 2014 16:14
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.8.5)  12 DEC 2014 11:26
 entering extended mode
-**C:/Users/Lee/game_simulation/final_paper/final_paper.tex
-(C:/Users/Lee/game_simulation/final_paper/final_paper.tex
+**C:/Users/leeri_000/basketball_stats/game_simulation/final_paper/final_paper.t
+ex
+
+(C:/Users/leeri_000/basketball_stats/game_simulation/final_paper/final_paper.te
+x
 LaTeX2e <2011/06/27>
 Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
 abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
@@ -324,7 +327,8 @@ Package: geometry 2010/09/12 v5.6 Page Geometry
 \Gm@dimlist=\toks21
 
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\geometry\geometry.cfg"))
-(C:\Users\Lee\game_simulation\final_paper\final_paper.aux
+(C:\Users\leeri_000\basketball_stats\game_simulation\final_paper\final_paper.au
+x
 
 LaTeX Warning: Label `table:matrix' multiply defined.
 
@@ -362,11 +366,12 @@ LaTeX Info: Redefining \ref on input line 29.
 LaTeX Info: Redefining \pageref on input line 29.
 LaTeX Info: Redefining \nameref on input line 29.
 
-(C:\Users\Lee\game_simulation\final_paper\final_paper.out)
-(C:\Users\Lee\game_simulation\final_paper\final_paper.out)
+(C:\Users\leeri_000\basketball_stats\game_simulation\final_paper\final_paper.ou
+t)
+(C:\Users\leeri_000\basketball_stats\game_simulation\final_paper\final_paper.ou
+t)
 \@outlinefile=\write3
-
-("C:\Program Files (x86)\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
+ ("C:\Program Files (x86)\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count118
 \scratchdimen=\dimen130
@@ -464,7 +469,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 60--64
 
  []
 
-<sqliteERDiagram.png, id=83, 1164.35pt x 742.775pt>
+<sqliteERDiagram.png, id=84, 1164.35pt x 742.775pt>
 File: sqliteERDiagram.png Graphic file (type png)
  <use sqliteERDiagram.png>
 Package pdftex.def Info: sqliteERDiagram.png used on input line 67.
@@ -489,57 +494,77 @@ Underfull \hbox (badness 10000) in paragraph at lines 81--82
 
  []
 
-[2] [3 <C:/Users/Lee/game_simulation/final_paper/sqliteERDiagram.png (PNG copy)
->]
+[2] [3 <C:/Users/leeri_000/basketball_stats/game_simulation/final_paper/sqliteE
+RDiagram.png (PNG copy)>]
 Underfull \hbox (badness 10000) in paragraph at lines 85--86
 
  []
 
-[4] <features.pdf, id=119, 816.01953pt x 505.89pt>
+
+Overfull \hbox (48.26144pt too wide) in paragraph at lines 100--112
+ [][] 
+ []
+
+[4] <features.pdf, id=120, 816.01953pt x 505.89pt>
 File: features.pdf Graphic file (type pdf)
  <use features.pdf>
 Package pdftex.def Info: features.pdf used on input line 120.
 (pdftex.def)             Requested size: 505.88953pt x 234.88132pt.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 127.
 
-<linear2.PNG, id=120, 492.33937pt x 355.3275pt>
+
+LaTeX Warning: Reference `:' on page 5 undefined on input line 127.
+
+<linear2.PNG, id=121, 492.33937pt x 355.3275pt>
 File: linear2.PNG Graphic file (type png)
  <use linear2.PNG>
-Package pdftex.def Info: linear2.PNG used on input line 131.
+Package pdftex.def Info: linear2.PNG used on input line 130.
 (pdftex.def)             Requested size: 433.63559pt x 289.08781pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 140.
-[5 <C:/Users/Lee/game_simulation/final_paper/features.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 148--149
+[5 <C:/Users/leeri_000/basketball_stats/game_simulation/final_paper/features.pd
+f>]
+Underfull \hbox (badness 10000) in paragraph at lines 147--148
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 156--179
+Underfull \hbox (badness 10000) in paragraph at lines 151--172
 
  []
 
-[6 <C:/Users/Lee/game_simulation/final_paper/linear2.PNG>]
-<season_wins.png, id=254, 1184.425pt x 783.92876pt>
+[6 <C:/Users/leeri_000/basketball_stats/game_simulation/final_paper/linear2.PNG
+>]
+Underfull \hbox (badness 10000) in paragraph at lines 173--174
+
+ []
+
+<season_wins.png, id=256, 1184.425pt x 783.92876pt>
 File: season_wins.png Graphic file (type png)
  <use season_wins.png>
-Package pdftex.def Info: season_wins.png used on input line 183.
+Package pdftex.def Info: season_wins.png used on input line 181.
 (pdftex.def)             Requested size: 426.79028pt x 426.7961pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 188--189
+Underfull \hbox (badness 10000) in paragraph at lines 186--187
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 195--196
+Underfull \hbox (badness 10000) in paragraph at lines 193--194
 
  []
 
-[7] [8 <C:/Users/Lee/game_simulation/final_paper/season_wins.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 198--199
+[7] [8 <C:/Users/leeri_000/basketball_stats/game_simulation/final_paper/season_
+wins.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 196--197
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 199--200
 
  []
 
@@ -549,51 +574,52 @@ Underfull \hbox (badness 10000) in paragraph at lines 202--203
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 206--207
+Underfull \hbox (badness 10000) in paragraph at lines 205--206
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 209--210
-
- []
-
+[9]
 Missing character: There is no Å in font ptmr7t!
 Missing character: There is no ¡ in font ptmr7t!
 
-Underfull \hbox (badness 10000) in paragraph at lines 219--220
+Underfull \hbox (badness 10000) in paragraph at lines 215--216
 []\OT1/ptm/m/n/10 Paul Fearn-head, Ben-jamin M. Tay-lor \OT1/ptm/m/it/10 On Es-
 ti-mat-ing the Abil-ity of NBA Play-ers\OT1/ptm/m/n/10 . 2010:
  []
 
-[9]
-Underfull \hbox (badness 10000) in paragraph at lines 233--234
+
+Underfull \hbox (badness 10000) in paragraph at lines 229--230
 []\OT1/ptm/m/n/10 Sam Hinkie and the An-a-lyt-ics Rev-o-lu-tion in Bas-ket-ball
 . Nilka-nth Pa-tel.
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 243.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 239.
 [10]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 243.
- (C:\Users\Lee\game_simulation\final_paper\final_paper.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 243.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 243.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 239.
+
+(C:\Users\leeri_000\basketball_stats\game_simulation\final_paper\final_paper.au
+x)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 239.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 239.
 Package rerunfilecheck Info: File `final_paper.out' has not changed.
 (rerunfilecheck)             Checksum: 65F4D1C3350D0BAA1F2755D99F022272;880.
 
 
+LaTeX Warning: There were undefined references.
+
+
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 243.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 239.
  ) 
 Here is how much of TeX's memory you used:
- 7739 strings out of 493921
- 110795 string characters out of 3144882
- 208616 words of memory out of 3000000
- 10874 multiletter control sequences out of 15000+200000
+ 7740 strings out of 493921
+ 111051 string characters out of 3144865
+ 208745 words of memory out of 3000000
+ 10875 multiletter control sequences out of 15000+200000
  27626 words of font info for 64 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 37i,10n,39p,1672b,441s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 37i,10n,39p,1713b,443s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Progra
 m Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program 
 Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Fi
@@ -605,9 +631,9 @@ KTeX 2.9/fonts/type1/urw/courier/ucrr8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/
 fonts/type1/urw/times/utmb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1
 /urw/times/utmr8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/
 utmri8a.pfb>
-Output written on final_paper.pdf (10 pages, 856798 bytes).
+Output written on final_paper.pdf (10 pages, 858006 bytes).
 PDF statistics:
- 330 PDF objects out of 1000 (max. 8388607)
+ 332 PDF objects out of 1000 (max. 8388607)
  49 named destinations out of 1000 (max. 500000)
  133 words of extra memory for PDF output out of 10000 (max. 10000000)
 

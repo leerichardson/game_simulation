@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.8.5)  8 DEC 2014 21:37
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.8.5)  12 DEC 2014 10:53
 entering extended mode
 **C:/Users/leeri_000/basketball_stats/game_simulation/final_paper/final_paper/f
 inal_paper.tex
@@ -473,11 +473,22 @@ Underfull \hbox (badness 10000) in paragraph at lines 61--65
 
  []
 
-<sqliteERDiagram.png, id=80, 1164.35pt x 742.775pt>
-File: sqliteERDiagram.png Graphic file (type png)
- <use sqliteERDiagram.png>
-Package pdftex.def Info: sqliteERDiagram.png used on input line 68.
-(pdftex.def)             Requested size: 426.78752pt x 341.44263pt.
+
+LaTeX Warning: File `sqliteERDiagram.png' not found on input line 68.
+
+
+! Package pdftex.def Error: File `sqliteERDiagram.png' not found.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.68 ...=150mm, height=120mm]{sqliteERDiagram.png}
+                                                  
+Using draft setting for this image.
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
 
 Underfull \hbox (badness 10000) in paragraph at lines 74--75
 
@@ -503,13 +514,22 @@ Underfull \hbox (badness 10000) in paragraph at lines 86--87
 
  []
 
-[2] [3 <C:/Users/leeri_000/basketball_stats/game_simulation/final_paper/final_p
-aper/sqliteERDiagram.png (PNG copy)>]
-<features.pdf, id=104, 888.28952pt x 505.89pt>
-File: features.pdf Graphic file (type pdf)
- <use features.pdf>
-Package pdftex.def Info: features.pdf used on input line 120.
-(pdftex.def)             Requested size: 505.883pt x 234.88132pt.
+[2] [3]
+
+LaTeX Warning: File `features.pdf' not found on input line 120.
+
+
+! Package pdftex.def Error: File `features.pdf' not found.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.120 ...e=features.pdf, width=7in,height=3.25in}}
+                                                  
+Using draft setting for this image.
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -520,11 +540,23 @@ Underfull \hbox (badness 10000) in paragraph at lines 127--128
 
  []
 
-[4] <algorithms.png, id=117, 528.47438pt x 349.305pt>
-File: algorithms.png Graphic file (type png)
- <use algorithms.png>
-Package pdftex.def Info: algorithms.png used on input line 130.
-(pdftex.def)             Requested size: 397.48375pt x 252.94914pt.
+[4]
+
+LaTeX Warning: File `algorithms.png' not found on input line 130.
+
+
+! Package pdftex.def Error: File `algorithms.png' not found.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.130 ...gorithms.png, width=5.5in,height=3.50in}}
+                                                  
+Using draft setting for this image.
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
 
 Underfull \hbox (badness 10000) in paragraph at lines 135--136
 
@@ -535,21 +567,29 @@ Underfull \hbox (badness 10000) in paragraph at lines 159--160
 
  []
 
-[5 <C:/Users/leeri_000/basketball_stats/game_simulation/final_paper/final_paper
-/features.pdf>] <season_wins.png, id=240, 1184.425pt x 783.92876pt>
-File: season_wins.png Graphic file (type png)
+[5]
 
-<use season_wins.png>
-Package pdftex.def Info: season_wins.png used on input line 167.
-(pdftex.def)             Requested size: 426.79028pt x 426.7961pt.
+LaTeX Warning: File `season_wins.png' not found on input line 167.
+
+
+! Package pdftex.def Error: File `season_wins.png' not found.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.167 ...height=15cm, width=15cm]{season_wins.png}
+                                                  
+Using draft setting for this image.
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
 
 Underfull \hbox (badness 10000) in paragraph at lines 172--173
 
  []
 
-[6 <C:/Users/leeri_000/basketball_stats/game_simulation/final_paper/final_paper
-/algorithms.png>] [7 <C:/Users/leeri_000/basketball_stats/game_simulation/final
-_paper/final_paper/season_wins.png>]
+[6] [7]
 Underfull \hbox (badness 10000) in paragraph at lines 179--180
 
  []
@@ -606,10 +646,10 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 227.
  ) 
 Here is how much of TeX's memory you used:
- 7724 strings out of 493921
- 111063 string characters out of 3144865
+ 7708 strings out of 493921
+ 110731 string characters out of 3144865
  208392 words of memory out of 3000000
- 10869 multiletter control sequences out of 15000+200000
+ 10853 multiletter control sequences out of 15000+200000
  24922 words of font info for 61 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  37i,10n,39p,1706b,333s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -624,9 +664,9 @@ KTeX 2.9/fonts/type1/urw/courier/ucrr8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/
 fonts/type1/urw/times/utmb8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1
 /urw/times/utmr8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/urw/times/
 utmri8a.pfb>
-Output written on final_paper.pdf (9 pages, 688655 bytes).
+Output written on final_paper.pdf (9 pages, 146425 bytes).
 PDF statistics:
- 315 PDF objects out of 1000 (max. 8388607)
+ 194 PDF objects out of 1000 (max. 8388607)
  42 named destinations out of 1000 (max. 500000)
- 125 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 105 words of extra memory for PDF output out of 10000 (max. 10000000)
 
