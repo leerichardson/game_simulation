@@ -1,0 +1,29 @@
+-------- MEETINGS ---------------------
+
+-  None
+
+
+-------- TO LOOK INTO ---------------------
+
+
+- Teams that show up as NA (Seattle Sonics, Vancouver Grizzlies, New Jersey Nets, New Orleans Hornets, more to find)
+
+- Look into Brooklyn (0 wins with Naive Bayes Season??, maybe the year they moved)
+
+
+----- FUTURE GOALS -------------
+
+
+- Could test best (tell all) metrics on their predictive accuracy. 
+
+- Look into Rookie Projections 
+
+- Scrape play by play data and calculate our own RAPM statistic
+
+- How to simulate games without knowing the players who played beforehand (Using % games payed of previous season to choose players involved pregame)
+
+- How does the predictions do against the spread? (Predictiing against the spread)
+
+- Clustering players based on a set of features- features are rates. 
+
+- Create Shiny app with the time series 
