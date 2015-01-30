@@ -13,7 +13,6 @@
 
 ----- FUTURE GOALS -------------
 
-
 - Could test best (tell all) metrics on their predictive accuracy. 
 
 - Look into Rookie Projections 
@@ -24,6 +23,4 @@
 
 - How does the predictions do against the spread? (Predictiing against the spread)
 
-- Clustering players based on a set of features- features are rates. 
-
-- Create Shiny app with the time series 
+- Clustering players based on a set of features- Using those features as data while computing the RPM statistic. 
